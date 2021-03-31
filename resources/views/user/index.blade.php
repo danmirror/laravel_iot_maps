@@ -11,10 +11,10 @@
           <i class="fas fa-tachometer-alt"></i> Dashboard
         </a>
         <a href="/" class="list-group-item list-group-item-action bg-light">
-          <i class="fas fa-chart-bar"></i> Data 1
+          <i class="fas fa-map-marker-alt"></i>  Maps
         </a>
         <a href="/" class="list-group-item list-group-item-action bg-light">
-          <i class="fas fa-map-marker-alt"></i>  Data 2
+          <i class="fas fa-chart-bar"></i> Data
         </a>
       </div>
     </div>
@@ -25,7 +25,7 @@
     @include('template.nav')
 
       <div class="container">
-        <h1 class="mt-2 title">Data Real</h1>
+        <h1 class="mt-2 title">Dashboard</h1>
           <div class="chart">
             <canvas id="chart"></canvas>
           </div>
