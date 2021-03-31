@@ -1,0 +1,169 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/template-overviews/simple-sidebar)
+ * Copyright 2013-2019 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+#menu-toggle {
+  border: 0px solid #333;
+  border-radius: 5px;
+  font-size: 25px;
+}
+
+.container {
+  padding: 50px 10em;
+}
+
+.title {
+  text-align: center;
+}
+
+hr {
+  width: 20rem;
+  border: 1px solid #111;
+}
+
+@media (max-width: 768px) {
+  .chart {
+    width: 350px;
+    height: 20rem;
+  }
+
+  .container {
+    padding: 50px 0em !important;
+  }
+}
+#menu-toggle {
+  margin-top: 3px;
+}
+
+/* Icon 1 */
+#nav-icon1 {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon1 span {
+  display: block;
+  position: absolute;
+  height: 2px;
+  background: #000000;
+  border-radius: 9px;
+  opacity: 1;
+  left: 0;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: 0.25s ease-in-out;
+  -moz-transition: 0.25s ease-in-out;
+  -o-transition: 0.25s ease-in-out;
+  transition: 0.25s ease-in-out;
+}
+
+#nav-icon1 span:nth-child(1) {
+  transition-delay: 0.2s;
+  top: 0px;
+  width: 90%;
+}
+
+#nav-icon1 span:nth-child(2) {
+  transition-delay: 0.2s;
+  top: 8px;
+  width: 75%;
+}
+
+#nav-icon1 span:nth-child(3) {
+  transition-delay: 0.2s;
+  top: 16px;
+  width: 100%;
+}
+
+#nav-icon1.open span:nth-child(1) {
+  transition-delay: 0.2s;
+  width: 100%;
+  top: 10px;
+  -webkit-transform: rotate(135deg);
+  -moz-transform: rotate(135deg);
+  -o-transform: rotate(135deg);
+  transform: rotate(135deg);
+}
+
+#nav-icon1.open span:nth-child(2) {
+  transition-delay: 0.2s;
+  opacity: 0;
+  left: -60px;
+}
+
+#nav-icon1.open span:nth-child(3) {
+  transition-delay: 0.2s;
+  top: 10px;
+  -webkit-transform: rotate(-135deg);
+  -moz-transform: rotate(-135deg);
+  -o-transform: rotate(-135deg);
+  transform: rotate(-135deg);
+}
+
+#navbarSupportedContent,
+#navbarSupportedContent.swipe {
+  transition: transform 0.25s ease;
+}
+
+#navbarSupportedContent {
+  transform: translateX(0);
+}
+
+#navbarSupportedContent.swipe {
+  transform: translateX(100%);
+}
+
+/*# sourceMappingURL=style.css.map */
