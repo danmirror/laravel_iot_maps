@@ -50,7 +50,12 @@
 }
 
 .container {
-  padding: 50px 10em;
+  padding: 10px 2em;
+}
+
+.container-content {
+  padding: 20px 2em;
+  border: #111;
 }
 
 .title {
@@ -69,7 +74,12 @@ hr {
   }
 
   .container {
-    padding: 50px 0em !important;
+    padding: 10px 0em !important;
+  }
+
+  .container-content {
+    padding: 20px 2em;
+    border: #111;
   }
 }
 #menu-toggle {
@@ -164,6 +174,22 @@ hr {
 
 #navbarSupportedContent.swipe {
   transform: translateX(100%);
+}
+
+#map {
+  position: absolute;
+  top: 14em;
+  bottom: 4em;
+  width: 64%;
+}
+
+@media (max-width: 768px) {
+  #map {
+    position: absolute;
+    top: 14em;
+    bottom: 4em;
+    width: 90%;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

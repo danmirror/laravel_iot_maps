@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\dataController;
 
 
 /*
@@ -25,3 +26,6 @@ Route::post('/user-store', [userController::class, 'store'])->name('userStore');
 Route::get('/login', [userController::class, 'login'])->name('login');
 Route::post('/login-store', [userController::class, 'loginStore'])->name('loginStore');
 Route::get('/logout', [userController::class, 'logout'])->name('logout');
+
+
+Route::get('/maps', [dataController::class, 'index'])->name('maps');

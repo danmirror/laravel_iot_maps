@@ -2,8 +2,13 @@
 //    width: 80rem;
 //    height: 5rem;
 // }
+
 .container{
-   padding: 50px 10em;
+   padding: 10px 2em;
+}
+.container-content{
+  padding: 20px 2em;
+  border:#111;
 }
 .title{
    text-align: center;
@@ -15,13 +20,17 @@ hr{
 
 
 @media (max-width: 768px) {
-   .chart{
-      width: 350px;
-      height: 20rem;
-      
-   }
-   .container{
-      padding: 50px 0em !important;
-   }
+  .chart{
+    width: 350px;
+    height: 20rem;
+
+  }
+  .container{
+    padding: 10px 0em !important;
+  }
+  .container-content{
+    padding: 20px 2em;
+    border:#111;
+  }
    
 }

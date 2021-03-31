@@ -1,3 +1,19 @@
 @import "sidebar";
 @import "content";
 @import "humberger";
+
+
+#map { 
+  position: absolute; 
+  top: 14em;
+  bottom: 4em;
+  width: 64%;
+}
+@media (max-width: 768px) {
+  #map { 
+    position: absolute; 
+    top: 14em;
+    bottom: 4em;
+    width: 90%;
+  }
+}
