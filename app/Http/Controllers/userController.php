@@ -81,7 +81,7 @@ class userController extends Controller
           'name' => 'required',
           'email' => 'required|min:4|email',
           'password' => 'required',
-          'confirm' => 'required|same:password',
+          'confirm' => 'required',
         ]);
 
         $email = $request->email;

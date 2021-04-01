@@ -29,3 +29,4 @@ Route::get('/logout', [userController::class, 'logout'])->name('logout');
 
 
 Route::get('/maps', [dataController::class, 'index'])->name('maps');
+Route::get('/api/create', [dataController::class, 'create']);

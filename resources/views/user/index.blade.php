@@ -2,15 +2,15 @@
 @section('content')
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
+    <div class="bg-light shadow" id="sidebar-wrapper">
       <div class="sidebar-heading">
-        <img src="image/" alt="" style="width: 170px;">   
+        <img src="image/logo" alt="" style="width: 170px;">   
       </div>
       <div class="list-group list-group-flush">
         <a href="/" class="list-group-item list-group-item-action bg-light">
           <i class="fas fa-tachometer-alt"></i> Dashboard
         </a>
-        <a href="/" class="list-group-item list-group-item-action bg-light">
+        <a href="{{route('maps')}}" class="list-group-item list-group-item-action bg-light">
           <i class="fas fa-map-marker-alt"></i>  Maps
         </a>
         <a href="/" class="list-group-item list-group-item-action bg-light">
@@ -25,7 +25,7 @@
     @include('template.nav')
 
       <div class="container">
-        <h1 class="mt-2 title">Dashboard</h1>
+        <h3 class="mt-2 title">Dashboard</h3>
           <div class="container-content shadow">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid non facere ipsum. Rerum mollitia ut placeat suscipit unde quo animi reiciendis voluptatibus dolores, porro tempore? Totam eligendi animi commodi!
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Et modi quidem voluptate ipsum velit, ea nulla sunt consectetur in pariatur reiciendis ex commodi consequatur. Nisi quam cum laudantium odit vel?
