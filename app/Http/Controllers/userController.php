@@ -16,46 +16,46 @@ class userController extends Controller
      */
     public function login()
     {
-        return view('user.login');
+      return view('user.login');
     }
     public function loginStore(Request $request)
     {
-        $this->validate($request, [
-          'email' => 'required|email',
-          'password' => 'required',
-          ]);
-        $email = $request->email;
-        $password = $request->password;
+      $this->validate($request, [
+        'email' => 'required|email',
+        'password' => 'required',
+      ]);
+      $email = $request->email;
+      $password = $request->password;
 
-        $data = User::where('email',$email)->first();
-        if($data){  //apakah email tersebut ada atau tidak
+      $data = User::where('email',$email)->first();
+      if($data){  //apakah email tersebut ada atau tidak
 
-            if(Hash::check($password,$data->password)){
-                Session::put('name',$data->name);
-                Session::put('email',$data->email);
-                Session::put('login',TRUE);
-                Session::put('first',TRUE);
-                
-                return redirect('/');
-            }
-            else{
-                return redirect('login')->with('alert',' Password salah !');
-            }
+        if(Hash::check($password,$data->password)){
+          Session::put('name',$data->name);
+          Session::put('email',$data->email);
+          Session::put('login',TRUE);
+          Session::put('first',TRUE);
+          
+          return redirect('/');
         }
         else{
-            return redirect('login')->with('alert',' Email belum terdaftar !');
+          return redirect('/user/login')->with('alert',' Password salah !');
         }
+      }
+      else{
+        return redirect('/user/login')->with('alert',' Email belum terdaftar !');
+      }
     }
 
 
     public function index()
     {   
-        if(!Session::get('login')){
-          return redirect('/user/login')->with('alert','Kamu harus login dulu');
-        }
-        $username = Session('name');
-        $user = User::where('name',$username)->first();
-        return view('user.index',compact('user'));
+      if(!Session::get('login')){
+        return redirect('/user/login')->with('alert','Kamu harus login dulu');
+      }
+      $username = Session('name');
+      $user = User::where('name',$username)->first();
+      return view('user.index',compact('user'));
     }
 
     /**
@@ -97,7 +97,7 @@ class userController extends Controller
             $data->email = $request->email;
             $data->password = bcrypt($request->password);
             $data->save();
-            return redirect('login')->with('alert-success','Pendaftaran berhasil');
+            return redirect('/user/login')->with('alert-success','Pendaftaran berhasil');
         }
         else{
             return redirect('user-add')->with('alert','Password tidak sama');

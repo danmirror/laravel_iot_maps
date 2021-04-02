@@ -1,4 +1,5 @@
 @extends ('layout.base')
+@section('title','Register')
 @section('content')
   <div class="container">
     @if ($errors->any())

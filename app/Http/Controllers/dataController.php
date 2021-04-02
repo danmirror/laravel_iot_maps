@@ -14,6 +14,7 @@ class dataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
       if(!Session::get('login')){
@@ -24,10 +25,10 @@ class dataController extends Controller
       $data = Data::where('id_user',$user->id)->get();
      
       return view('maps.index',
-          [
-            'user'=>$user,
-            'data'=>$data,
-          ]);
+      [
+        'user'=>$user,
+        'data'=>$data,
+      ]);
     }
 
     /**
@@ -37,7 +38,7 @@ class dataController extends Controller
      */
     public function create()
     {
-        return view('data.create');
+      
     }
 
     /**

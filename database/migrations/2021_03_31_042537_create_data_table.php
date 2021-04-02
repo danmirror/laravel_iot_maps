@@ -25,6 +25,7 @@ class CreateDataTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('xgyro')->nullable();
             $table->string('ygyro')->nullable();
+            $table->string('speed')->nullable();
             $table->string('temp')->nullable();
             $table->timestamps();
         });

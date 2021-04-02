@@ -1,4 +1,5 @@
 @extends ('layout.base')
+@section('title','Dashboard')
 @section('content')
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->

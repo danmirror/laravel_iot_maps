@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\dataController;
+use App\Http\Controllers\parameterController;
 
 
 /*
@@ -23,10 +24,11 @@ use App\Http\Controllers\dataController;
 Route::get('/', [userController::class, 'index']);
 Route::get('/user-add', [userController::class, 'create']);
 Route::post('/user-store', [userController::class, 'store'])->name('userStore');
-Route::get('/login', [userController::class, 'login'])->name('login');
+Route::get('user/login', [userController::class, 'login'])->name('login');
 Route::post('/login-store', [userController::class, 'loginStore'])->name('loginStore');
-Route::get('/logout', [userController::class, 'logout'])->name('logout');
+Route::get('/user/logout', [userController::class, 'logout'])->name('logout');
 
+Route::get('/parameter', [parameterController::class, 'create']);
+Route::post('/parameter-store', [parameterController::class, 'store'])->name('parameterStore');
 
 Route::get('/maps', [dataController::class, 'index'])->name('maps');
-Route::get('/api/create', [dataController::class, 'create']);
