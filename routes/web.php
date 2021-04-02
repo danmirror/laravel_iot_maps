@@ -28,7 +28,7 @@ Route::get('user/login', [userController::class, 'login'])->name('login');
 Route::post('/login-store', [userController::class, 'loginStore'])->name('loginStore');
 Route::get('/user/logout', [userController::class, 'logout'])->name('logout');
 
-Route::get('/parameter', [parameterController::class, 'create']);
+Route::get('/parameter', [parameterController::class, 'create'])->name('parameter');
 Route::post('/parameter-store', [parameterController::class, 'store'])->name('parameterStore');
 
 Route::get('/maps', [dataController::class, 'index'])->name('maps');

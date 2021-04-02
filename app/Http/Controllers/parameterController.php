@@ -56,9 +56,19 @@ class parameterController extends Controller
         'xmina' => 'required',
         'xminb' => 'required',
         'xminc' => 'required',
+
+        'ymina' => 'required',
+        'yminb' => 'required',
+        'yminc' => 'required',
+
         'xmaxa' => 'required',
         'xmaxb' => 'required',
         'xmaxc' => 'required',
+
+        'ymaxa' => 'required',
+        'ymaxb' => 'required',
+        'ymaxc' => 'required',
+
         'speeda' => 'required',
         'speedb' => 'required',
         'speedc' => 'required',
@@ -75,9 +85,19 @@ class parameterController extends Controller
         $data->xmina = $request->xmina;
         $data->xminb = $request->xminb;
         $data->xminc = $request->xminc;
+
+        $data->ymina = $request->ymina;
+        $data->yminb = $request->yminb;
+        $data->yminc = $request->yminc;
+
         $data->xmaxa = $request->xmaxa;
         $data->xmaxb = $request->xmaxb;
         $data->xmaxc = $request->xmaxc;
+        
+        $data->ymaxa = $request->ymaxa;
+        $data->ymaxb = $request->ymaxb;
+        $data->ymaxc = $request->ymaxc;
+
         $data->speeda = $request->speeda;
         $data->speedb = $request->speedb;
         $data->speedc = $request->speedc;
@@ -88,9 +108,19 @@ class parameterController extends Controller
         $data_user->xmina = $request->xmina;
         $data_user->xminb = $request->xminb;
         $data_user->xminc = $request->xminc;
+
+        $data_user->ymina = $request->ymina;
+        $data_user->yminb = $request->yminb;
+        $data_user->yminc = $request->yminc;
+
         $data_user->xmaxa = $request->xmaxa;
         $data_user->xmaxb = $request->xmaxb;
         $data_user->xmaxc = $request->xmaxc;
+
+        $data_user->ymaxa = $request->ymaxa;
+        $data_user->ymaxb = $request->ymaxb;
+        $data_user->ymaxc = $request->ymaxc;
+
         $data_user->speeda = $request->speeda;
         $data_user->speedb = $request->speedb;
         $data_user->speedc = $request->speedc;

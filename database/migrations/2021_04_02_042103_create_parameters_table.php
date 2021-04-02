@@ -22,6 +22,12 @@ class CreateParametersTable extends Migration
             $table->string('xmaxa');
             $table->string('xmaxb');
             $table->string('xmaxc');
+            $table->string('ymina');
+            $table->string('yminb');
+            $table->string('yminc');
+            $table->string('ymaxa');
+            $table->string('ymaxb');
+            $table->string('ymaxc');
             $table->string('speeda');
             $table->string('speedb');
             $table->string('speedc');
