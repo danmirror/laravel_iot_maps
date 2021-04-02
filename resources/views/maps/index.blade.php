@@ -69,9 +69,20 @@
   var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v11',
-  center: [-122.48383155304096, 37.82882682974591],
-  zoom: 16
+  center: [ 109.95656,-7.382794],
+  zoom: 13
   });
+  // http://gisdata.usgs.gov/xmlwebservices2/elevation_service.asmx/getElevation?X_Value=" + 
+  //            String.valueOf(longitude)   + 
+  //            "&Y_Value=" + String.valueOf(latitude)             
+  //            + "&Elevation_Units=METERS&Source_Layer=-1&Elevation_Only=true";
+
+  // var map = new google.maps.Map(document.getElementById('map'), {
+  // mapTypeId: 'roadmap',
+  // center: { lat: 47.2547215, lng: -123.1311308 },
+  // zoom: 13
+  // });
+
   
   map.on('load', function () {
     map.addSource('lines', {
@@ -86,7 +97,8 @@
         },
         'geometry': {
           'type': 'LineString',
-          'coordinates': data_1,
+          'coordinates': [[109.95656,-7.382794],[109.956569,-7.382000]],
+          // data_1,
         }
       },
       {
