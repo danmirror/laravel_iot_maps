@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Data;
 use App\Models\User;
+use App\Models\Parameter;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
@@ -23,11 +24,13 @@ class dataController extends Controller
       $username = Session('name');
       $user = User::where('name',$username)->first();
       $data = Data::where('id_user',$user->id)->get();
+      $parameter = Parameter::where('id_user',$user->id)->first();
      
       return view('maps.index',
       [
         'user'=>$user,
         'data'=>$data,
+        'parameter' => $parameter,
       ]);
     }
 
@@ -59,6 +62,10 @@ class dataController extends Controller
         ]);
       }
       else{
+        // return response()->json([
+        //   'name' => $name,
+        //   'description' => $request->xgyro,
+        // ]);
           $data =  new Data();
           // dd($username->id);
           $data->id_user = $username->id;
@@ -71,6 +78,7 @@ class dataController extends Controller
           $data->latitude  = $request->latitude;
           $data->xgyro = $request->xgyro;
           $data->ygyro = $request->ygyro;
+          $data->speed = $request->speed;
           $data->temp = $request->temp;
           $data->save();
           return redirect('login')->with('alert-success','Pendaftaran berhasil');

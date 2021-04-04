@@ -42,15 +42,53 @@
 
       <div class="container">
         <h3 class="mt-2 title">Maps</h3>
-          <div class="container-content ">
-            <div class="shadow" id="map"></div>
+          <div class="container-content shadow">
+            <div class="row">
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed L shock H
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed L shock M
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed L shock L
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed M shock H
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed M shock M
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed M shock L
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed H shock H
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed H shock M
+              </div>
+              <div class="col-6 col-lg-4">
+                <div class="legend"></div>
+                speed H shock L
+              </div>
+            </div>
+            <div class="position-relative mt-4" style="min-height:500px">
+              <div id="map"></div>
+            </div>
           </div>
       </div>
     </div>
     <!-- /#page-content-wrapper -->
   </div>
-
-
   
   <script>
  
@@ -59,13 +97,186 @@
   let data_trig_2=[];
   let data_2=[];
 
+  // rendah
+  let low_low = [];
+  let data_low_low = [];
+  let array_low_low = [];
+
+  let low_mid = [];
+  let data_low_mid = [];
+  let array_low_mid = [];
+
+  let low_high = [];
+  let data_low_high = [];
+  let array_low_high = [];
+
+  // sedang
+  let mid_low = [];
+  let data_mid_low = [];
+  let array_mid_low = [];
+
+  let mid_mid = [];
+  let data_mid_mid = [];
+  let array_mid_mid = [];
+
+  let mid_high = [];
+  let data_mid_high = [];
+  let array_mid_high = [];
+
+  //tinggi
+  let high_low = [];
+  let data_high_low = [];
+  let array_high_low = [];
+
+  let high_mid = [];
+  let data_high_mid = [];
+  let array_high_mid = [];
+
+  let high_high = [];
+  let data_high_high = [];
+  let array_high_high = [];
+
   @foreach($data as $data_all)
     @if($data_all->id_car == 1)
-      data_trig_1.push(<?= $data_all->longitude; ?>)
-      data_trig_1.push(<?= $data_all->latitude; ?>)
+      data_trig_1.push(<?= $data_all->longitude; ?>);
+      data_trig_1.push(<?= $data_all->latitude; ?>);
       data_1.push(data_trig_1);
       //reset
       data_trig_1 = [];
+      console.log("count")
+      //goncangan rendah
+      @if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
+        $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa )
+        
+          @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+            low_low.push(<?= $data_all->longitude; ?>);
+            low_low.push(<?= $data_all->latitude; ?>);
+            data_low_low.push(low_low);
+            low_low =[];
+          @else
+            array_low_low.push( data_low_low);
+            data_low_low = [];
+          @endif
+          @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+            low_mid.push(<?= $data_all->longitude; ?>);
+            low_mid.push(<?= $data_all->latitude; ?>);
+            data_low_mid.push(low_mid);
+            low_mid =[];
+          @else
+            array_low_mid.push( data_low_mid);
+            data_low_mid =[];
+          @endif
+          @if($data_all->speed >= $parameter->speedc)
+            low_high.push(<?= $data_all->longitude; ?>);
+            low_high.push(<?= $data_all->latitude; ?>);
+            data_low_high.push(low_high);
+            low_high =[];
+          @else
+            array_low_high.push( data_low_high);
+            data_low_high =[];
+          @endif
+      @else
+        if(data_low_low.length){
+          array_low_low.push( data_low_low);
+          data_low_low = [];
+        }
+        if(data_low_mid.length){
+          array_low_mid.push( data_low_mid);
+          data_low_mid =[];
+        }
+        if(data_low_high.length){
+          array_low_high.push( data_low_high);
+          data_low_high =[];
+        }
+      @endif
+    
+       //goncangan sedang
+      @if($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
+        $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb )
+         
+          @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+            mid_low.push(<?= $data_all->longitude; ?>);
+            mid_low.push(<?= $data_all->latitude; ?>);
+            data_mid_low.push(mid_low);
+            mid_low =[];
+          @else
+            array_mid_low.push( data_mid_low);
+          @endif
+          @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+            mid_mid.push(<?= $data_all->longitude; ?>);
+            mid_mid.push(<?= $data_all->latitude; ?>);
+            data_mid_mid.push(mid_mid);
+            mid_mid =[];
+          @else
+            array_mid_mid.push( data_mid_mid);
+          @endif
+          @if($data_all->speed >= $parameter->speedc)
+            mid_high.push(<?= $data_all->longitude; ?>);
+            mid_high.push(<?= $data_all->latitude; ?>);
+            data_mid_high.push(mid_high);
+            mid_high =[];
+          @else
+            array_mid_high.push( data_mid_high);
+          @endif
+      @else
+        if(data_mid_low.length){
+          array_mid_low.push( data_mid_low);
+          data_mid_low = [];
+        }
+        if(data_mid_mid.length){
+          array_mid_mid.push( data_mid_mid);
+          data_mid_mid =[];
+        }
+        if(data_mid_high.length){
+          array_mid_high.push( data_mid_high);
+          data_mid_high =[];
+        }
+      @endif
+
+       //goncangan tinggi
+      @if($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
+        $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc )
+        
+          @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+            high_low.push(<?= $data_all->longitude; ?>);
+            high_low.push(<?= $data_all->latitude; ?>);
+            data_high_low.push(high_low);
+            high_low =[];
+          @else
+            array_high_low.push( data_high_low);
+          @endif
+          @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+            high_mid.push(<?= $data_all->longitude; ?>);
+            high_mid.push(<?= $data_all->latitude; ?>);
+            data_high_mid.push(high_mid);
+            high_mid =[];
+          @else
+            array_high_mid.push( data_high_mid);
+          @endif
+          @if($data_all->speed >= $parameter->speedc)
+            high_high.push(<?= $data_all->longitude; ?>);
+            high_high.push(<?= $data_all->latitude; ?>);
+            data_high_high.push(high_high);
+            high_high =[];
+          @else
+            array_high_high.push( data_high_high);
+          @endif
+      @else
+        if(data_high_low.length){
+          array_high_low.push( data_high_low);
+          data_high_low = [];
+        }
+        if(data_high_mid.length){
+          array_high_mid.push( data_high_mid);
+          data_high_mid =[];
+        }
+        if(data_high_high.length){
+          array_high_high.push( data_high_high);
+          data_high_high =[];
+        }
+      @endif
+
+      
     @elseif($data_all->id_car == 2)
       data_trig_2.push(<?= $data_all->longitude; ?>)
       data_trig_2.push(<?= $data_all->latitude; ?>)
@@ -76,7 +287,7 @@
     @endif
   @endforeach
 
-  // console.log(data_trig_2);
+  console.log("cuk",array_mid_low);
   // console.log(data_1);
     
   
@@ -105,34 +316,157 @@
     {
       'type': 'Feature',
       'properties': {
-        'color': ' #99ff66'
+        'color': '#80b3ff' //biru
       },
       'geometry': {
         'type': 'LineString',
-        'coordinates': [[109.95656,-7.382794],[109.95656,-7.382200],[109.956569,-7.382000],[109.956569,-7.381900]]
+        'coordinates': data_1
       }
     });
 
-  var data_partial =[[[109.95656,-7.382794],[109.95656,-7.382400]],[[109.95656,-7.382200],[109.956569,-7.382000]]];
+  // var data_partial =[[[109.95656,-7.382794],[109.95656,-7.382400]],[[109.95656,-7.382200],[109.956569,-7.382000]]];
   
-  for (let i in data_partial){
-    console.log(data_partial[i]);
-    data_nav.push(//state anather
+  //rendah
+  for (let i in array_low_low){
+    // console.log(data_partial[i]);
+    data_nav.push(
       {
         'type': 'Feature',
         'properties': {
-          'color': '#F7455D' // red
+          'color': '#abffab' // green  
         },
         'geometry': {
           'type': 'LineString',
-          'coordinates': data_partial[i],
+          'coordinates': array_low_low[i],
+          // data_1,
+        }
+      });
+  }
+  for (let i in array_low_mid){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#fff38f' // yellow
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_low_mid[i],
+          // data_1,
+        }
+      });
+  }
+ 
+  for (let i in array_low_high){
+    // console.log("log " ,array_low_high);
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#ff9696' // red
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_low_high[i],
           // data_1,
         }
       });
   }
 
-  var features = data_nav;
+  //sedang
+  for (let i in array_mid_low){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#00ff00' // green  
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_mid_low[i],
+          // data_1,
+        }
+      });
+  }
+  for (let i in array_mid_mid){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#ffe512' // yellow
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_mid_mid[i],
+          // data_1,
+        }
+      });
+  }
+ 
+  for (let i in array_mid_high){
+    // console.log("log " ,array_mid_high);
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#ff1212' // red
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_mid_high[i],
+          // data_1,
+        }
+      });
+  }
 
+  //tinggi
+  for (let i in array_high_low){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#20d020' // green  
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_high_low[i],
+          // data_1,
+        }
+      });
+  }
+  for (let i in array_high_mid){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#bfab02' // yellow
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_high_mid[i],
+          // data_1,
+        }
+      });
+  }
+ 
+  for (let i in array_high_high){
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#bd0303' // red
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': array_high_high[i],
+          // data_1,
+        }
+      });
+  }
+  
+
+  var features = data_nav;
+  
   map.on('load', function () {
     map.addSource('lines', {
       'type': 'geojson',

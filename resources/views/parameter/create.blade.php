@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group">
                       <label for="speedb">Speed-B</label>
-                      <input name="speedb"  type="text" class="form-control" id="speedb" value="<?php if($data)echo$data->speeda ?>"
+                      <input name="speedb"  type="text" class="form-control" id="speedb" value="<?php if($data)echo$data->speedb ?>"
                           aria-describedby="speedb" placeholder="set nilai">
                       <small id="speedb" class="form-text text-muted">Nilai speed sedang</small>
                     </div>

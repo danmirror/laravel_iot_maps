@@ -179,18 +179,51 @@ hr {
 
 #map {
   position: absolute;
-  top: 14em;
+  top: 0;
   bottom: 4em;
-  width: 64%;
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  #map {
-    position: absolute;
-    top: 14em;
-    bottom: 4em;
-    width: 90%;
-  }
+.legend {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+}
+
+*:nth-child(1) > .legend {
+  background-color: #20d020;
+}
+
+*:nth-child(2) > .legend {
+  background-color: #00ff00;
+}
+
+*:nth-child(3) > .legend {
+  background-color: #abffab;
+}
+
+*:nth-child(4) > .legend {
+  background-color: #bfab02;
+}
+
+*:nth-child(5) > .legend {
+  background-color: #ffe512;
+}
+
+*:nth-child(6) > .legend {
+  background-color: #fff38f;
+}
+
+*:nth-child(7) > .legend {
+  background-color: #bd0303;
+}
+
+*:nth-child(8) > .legend {
+  background-color: #ff1212;
+}
+
+*:nth-child(9) > .legend {
+  background-color: #ff9696;
 }
 
 /*# sourceMappingURL=style.css.map */
