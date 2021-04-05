@@ -41,15 +41,14 @@
     @include('template.nav')
 
       <div class="container">
-        <h3 class="mt-2 title">Parameter Setting</h3>
+        <h3 class="mt-2 title">Data Distribution</h3>
           <div class="container-content shadow">
-
+            <div class="row">
+              <div class="col-6">
+                <canvas id="myChart" width="400" height="400"></canvas>
+              </div>  
+            </div>
           <div>
-            <canvas id="myChart" width="400" height="400"></canvas>
-          </div>
-
-
-          </div>
         </div>
     </div>
     <!-- /#page-content-wrapper -->

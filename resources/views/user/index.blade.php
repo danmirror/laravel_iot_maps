@@ -43,14 +43,12 @@
       <div class="container">
         <h3 class="mt-2 title">Dashboard</h3>
           <div class="container-content shadow">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid non facere ipsum. Rerum mollitia ut placeat suscipit unde quo animi reiciendis voluptatibus dolores, porro tempore? Totam eligendi animi commodi!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et modi quidem voluptate ipsum velit, ea nulla sunt consectetur in pariatur reiciendis ex commodi consequatur. Nisi quam cum laudantium odit vel?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, provident minus esse eveniet doloremque quasi accusantium voluptas reiciendis beatae eaque fuga architecto dolorum perspiciatis exercitationem sint id doloribus illo recusandae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi provident mollitia fugiat modi, architecto ex debitis id, dolores asperiores eos soluta voluptates laborum consectetur facilis ea quam corporis rem quibusdam.
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus aliquid non facere ipsum. Rerum mollitia ut placeat suscipit unde quo animi reiciendis voluptatibus dolores, porro tempore? Totam eligendi animi commodi!
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et modi quidem voluptate ipsum velit, ea nulla sunt consectetur in pariatur reiciendis ex commodi consequatur. Nisi quam cum laudantium odit vel?
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis, provident minus esse eveniet doloremque quasi accusantium voluptas reiciendis beatae eaque fuga architecto dolorum perspiciatis exercitationem sint id doloribus illo recusandae.
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi provident mollitia fugiat modi, architecto ex debitis id, dolores asperiores eos soluta voluptates laborum consectetur facilis ea quam corporis rem quibusdam.
+            <h3> Hay, <span style="text-transform: capitalize"> {{$user->name}}</span></h3 >
+            <h5> Welcome to Maps Navigation ...</h5>  
+            <br>
+            <br>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus architecto accusantium aut nobis rerum ullam quisquam non hic maiores est officiis, laborum nulla ratione modi incidunt numquam vero eaque. Saepe?
+            </p>
           </div>
         </div>
     </div>
