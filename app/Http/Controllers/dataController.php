@@ -16,20 +16,59 @@ class dataController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
+    public function data(Request $request)
     {
       if(!Session::get('login')){
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
       }
+      $setting = $request->setting;
+      if(!session::get('setting')){
+        $setting = 1;
+      }
+
+      Session::put('setting',$setting);
+      // dd($setting);
       $username = Session('name');
       $user = User::where('name',$username)->first();
-      $data = Data::where('id_user',$user->id)->get();
+      $data = Data::where([['id_user',"=",$user->id],
+                          ['id_car',"=",$setting]])->get();
       $parameter = Parameter::where('id_user',$user->id)->first();
-     
+      $data_setting = Data::where('id_user',$user->id)->get();
+    
+      return view('data.index',
+      [
+        'user'=>$user,
+        'data'=>$data,
+        'data_setting'=>$data_setting,
+        'parameter' => $parameter,
+      ]);
+    }
+
+
+    public function index(Request $request)
+    {
+      if(!Session::get('login')){
+        return redirect('/user/login')->with('alert','Kamu harus login dulu');
+      }
+      $setting = $request->setting;
+      if(!session::get('setting')){
+        $setting = 1;
+      }
+
+      Session::put('setting',$setting);
+      // dd($setting);
+      $username = Session('name');
+      $user = User::where('name',$username)->first();
+      $data = Data::where([['id_user',"=",$user->id],
+                          ['id_car',"=",$setting]])->get();
+      $parameter = Parameter::where('id_user',$user->id)->first();
+      $data_setting = Data::where('id_user',$user->id)->get();
+
       return view('maps.index',
       [
         'user'=>$user,
         'data'=>$data,
+        'data_setting'=>$data_setting,
         'parameter' => $parameter,
       ]);
     }
