@@ -23,44 +23,56 @@ class data_algo{
 
   public static function data_algo($data,$parameter){
 
+    // $datasss = [];
     foreach($data as $data_all){
-      //goncangan rendah
-      if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
-        $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa ){
-      
-        if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-          self::$low_low +=1; 
-        elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-          self::$low_mid +=1;
-        elseif($data_all->speed >= $parameter->speedc)
-          self::$low_high +=1;
-      
+      if(session::get('date')){
+        $times = strtotime(date($data_all->updated_at));
+        $times_day = date("d-m-Y",  $times+7*60*60);
+        // dd(session::get('date'));
+        if(session::get('date') == $times_day){
+          // $datasss[]=1;
+
+           //goncangan rendah
+          if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
+            $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa ){
+          
+            if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              self::$low_low +=1; 
+            elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              self::$low_mid +=1;
+            elseif($data_all->speed >= $parameter->speedc)
+              self::$low_high +=1;
+          
+            }
+          //goncangan sedang
+          elseif($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
+            $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb ){
+
+            if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              self::$mid_low +=1;
+            elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              self::$mid_mid +=1;
+            elseif($data_all->speed >= $parameter->speedc)
+              self::$mid_high +=1;
+            }
+          //goncangan tinggi
+          elseif($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
+            $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc ){
+          
+            if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              self::$high_low +=1;
+            elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              self::$high_mid +=1;
+            elseif($data_all->speed >= $parameter->speedc)
+              self::$high_high +=1;
+          }
+          
         }
-      //goncangan sedang
-      elseif($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
-        $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb ){
-  
-        if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-          self::$mid_low +=1;
-        elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-          self::$mid_mid +=1;
-        elseif($data_all->speed >= $parameter->speedc)
-          self::$mid_high +=1;
-        }
-      //goncangan tinggi
-      elseif($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
-        $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc ){
-      
-        if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-          self::$high_low +=1;
-        elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-          self::$high_mid +=1;
-        elseif($data_all->speed >= $parameter->speedc)
-          self::$high_high +=1;
-        //  dd("hey") ;
       }
+     
         
     }
+    // dd(  $datasss);
   }
 }
 class dataController extends Controller
@@ -75,6 +87,7 @@ class dataController extends Controller
     public function data(Request $request)
     {
       
+      
       if(!Session::get('login')){
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
       }
@@ -85,16 +98,22 @@ class dataController extends Controller
       else{
         if($request->setting){
           $setting = $request->setting;
-          session::put('setting',$setting);
         }
         else{
           $setting = session::get('setting');
-          session::put('setting',$setting);
         }
       }
+      session::put('setting',$setting);
       
       // dd(session('setting'));
-     
+      if($request->date)
+        session::put('date',$request->date);
+      else
+        session::put('date',date("d-m-Y", strtotime(date("d-m-Y"))));
+
+      // dd($request->date);
+   
+      // updated_at
       // dd($setting);
       $username = Session('name');
       $user = User::where('name',$username)->first();
@@ -103,6 +122,11 @@ class dataController extends Controller
       $parameter = Parameter::where('id_user',$user->id)->first();
       $data_setting = Data::where('id_user',$user->id)->get();
      
+      // foreach( $data  as $data_sort){
+        // $times = strtotime(date($data_sort->updated_at));
+        // dd(date("d",  $times+7*60*60));
+      // }
+
       data_algo::data_algo($data,$parameter);
       $approach=[
         data_algo::$low_low,data_algo::$low_mid,data_algo::$low_high,
@@ -131,13 +155,12 @@ class dataController extends Controller
       else{
         if($request->setting){
           $setting = $request->setting;
-          session::put('setting',$setting);
         }
         else{
           $setting = session::get('setting');
-          session::put('setting',$setting);
         }
       }
+      session::put('setting',$setting);
       
       // dd($setting);
       $username = Session('name');

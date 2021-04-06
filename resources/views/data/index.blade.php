@@ -42,12 +42,32 @@
 
       <div class="container">
         <h3 class="mt-2 title">Data Distribution</h3>
+
+
           <div class="container-content shadow">
             <div class="row row justify-content-between">
               <div class="col-6">
                 <canvas id="myChart" width="400" height="400"></canvas>
               </div>  
               <div class="col-5">
+                <form action="" method="get">
+
+                  <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text " for="select">Set Time</label>
+                    </div>
+
+                    <input class='form-control' type="text" id="date" name="date" value="{{session('date')}}">
+
+                    <div class="input-group-append">
+                    <button class="btn btn-primary d-flex ">
+                    <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                    </svg>
+                    </button>
+                    </div>
+                  </div>
+                </form>
                 <form action="" method="get">
 
                   <div class="input-group mb-3 ">
@@ -68,9 +88,9 @@
                     </select>
                     <div class="input-group-append">
                     <button class="btn btn-primary d-flex ">
-                      <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M15 17V14H18V12L22 15.5L18 19V17H15M17 18V21H14V23L10 19.5L14 16V18H17M12 8C9.79 8 8 9.8 8 12C8 13.91 9.35 15.54 11.21 15.92L16 11.86C15.93 9.71 14.16 8 12 8M12 14C10.9 14 10 13.11 10 12S10.9 10 12 10 14 10.9 14 12 13.11 14 12 14M21.66 8.73L19.66 5.27C19.54 5.05 19.28 4.96 19.05 5.05L16.56 6.05C16.05 5.64 15.5 5.31 14.87 5.05L14.5 2.42C14.46 2.18 14.25 2 14 2H10C9.75 2 9.54 2.18 9.5 2.42L9.13 5.07C8.5 5.33 7.96 5.66 7.44 6.07L5 5.05C4.77 4.96 4.5 5.05 4.39 5.27L2.39 8.73C2.26 8.94 2.31 9.22 2.5 9.37L4.57 11L4.5 12L4.57 13L2.46 14.63C2.26 14.78 2.21 15.06 2.34 15.27L4.34 18.73C4.45 19 4.74 19.11 5 19L5 19L7.5 18C7.74 18.19 8 18.37 8.26 18.53L9.91 17.13C9.14 16.8 8.46 16.31 7.91 15.68L5.5 16.68L4.73 15.38L6.8 13.8C6.4 12.63 6.4 11.37 6.8 10.2L4.69 8.65L5.44 7.35L7.85 8.35C8.63 7.45 9.68 6.82 10.85 6.57L11.25 4H12.75L13.12 6.62C14.29 6.86 15.34 7.5 16.12 8.39L18.53 7.39L19.28 8.69L17.2 10.2C17.29 10.46 17.36 10.73 17.4 11H19.4L21.5 9.37C21.72 9.23 21.78 8.95 21.66 8.73M12 8C9.79 8 8 9.8 8 12C8 13.91 9.35 15.54 11.21 15.92L16 11.86C15.93 9.71 14.16 8 12 8M12 14C10.9 14 10 13.11 10 12S10.9 10 12 10 14 10.9 14 12 13.11 14 12 14M12 8C9.79 8 8 9.8 8 12C8 13.91 9.35 15.54 11.21 15.92L16 11.86C15.93 9.71 14.16 8 12 8M12 14C10.9 14 10 13.11 10 12S10.9 10 12 10 14 10.9 14 12 13.11 14 12 14Z" />
-                      </svg>
+                    <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                    </svg>
                     </button>
                     </div>
                   </div>
@@ -88,7 +108,12 @@
 
 
 <script>
-console.log({{json_encode($approach)}});
+// console.log({{json_encode($approach)}});
+
+  $('#date').datepicker({
+		format: 'dd-mm-yyyy',
+		autoclose:true
+    });
 
 
 var ctx = document.getElementById('myChart');
