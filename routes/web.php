@@ -32,4 +32,5 @@ Route::get('/parameter', [parameterController::class, 'create'])->name('paramete
 Route::post('/parameter-store', [parameterController::class, 'store'])->name('parameterStore');
 
 Route::get('/maps', [dataController::class, 'index'])->name('maps');
+
 Route::get('/data', [dataController::class, 'data'])->name('data');

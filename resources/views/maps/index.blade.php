@@ -53,8 +53,8 @@
                     <div class="input-group-prepend">
                       <label class="input-group-text " for="inputGroupSelect01">Set ID</label>
                     </div>
-                    <select name="setting" class="custom-select setting" id="inputGroupSelect01" value="4">
-                      <option disabled >Choose...</option>
+                    <select name="setting" class="custom-select setting" id="inputGroupSelect01">
+                      <option selected disabled hidden >{{session('setting')}}</option>
                       <?php $car_array = [];?>
 
                       @foreach($data_setting as $data_car)
