@@ -1,6 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Montserrat:wght@100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Josefin+Sans:wght@300&family=Montserrat:wght@100&display=swap');
 .font{
   font-family: 'Josefin Sans', sans-serif;
+}
+h3{
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+}
+.font-2{
+  font-family: 'Abel', sans-serif;
+  font-weight: bold;
+}
+.bold{
+  font-weight: bold;
+}
+
+.size-18{
+  font-size: 18px;
+}
+.size-16{
+  font-size: 16px;
 }

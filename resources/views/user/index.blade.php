@@ -43,13 +43,25 @@
       <div class="container  content">
         <h3 class="mt-2 title">Dashboard</h3>
           <div class="container-content shadow">
-            <h3> Hay, <span style="text-transform: capitalize"> {{$user->name}}</span></h3 >
-            <h5 class="font"> Welcome to Maps Navigation ...</h5>  
+            <h4 class="font"> Hay, <span style="text-transform: capitalize"> {{$user->name}}</span></h4 >
+            <p class="font ml-2"> Welcome to Maps Navigation ...</pack>  
             <br>
             <br>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus architecto accusantium aut nobis rerum ullam quisquam non hic maiores est officiis, laborum nulla ratione modi incidunt numquam vero eaque. Saepe?
             </p>
           </div>
+          <div class="container-content mt-4 shadow">
+            <h5 class="font mb-1"> Status</h5 >
+            <div class="row">
+              <div class="col-md">
+                active = on
+              </div>
+              <div class="col-md">
+                car = 20
+              </div>
+            </div>
+          </div>
+          
       </div>
       @include('template.footer')
 

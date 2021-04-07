@@ -100,6 +100,13 @@
   transform: translateX(100%);
 }
 
+
+@media only screen and (min-width: 600px) {
+  #nav-icon1{
+    display: none;
+  }
+}
+
 //content
 // #nav-icon1.open{
 //   .container{

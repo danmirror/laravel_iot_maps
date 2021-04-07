@@ -151,6 +151,6 @@ class userController extends Controller
 
     public function logout(){
         Session::flush();
-        return redirect('login')->with('alert','Kamu sudah logout');
+        return redirect('user/login')->with('alert','Kamu sudah logout');
     }
 }

@@ -96,10 +96,12 @@
               </form>
             
               <div>
-                <h5 class="mt-5 mb-1 text-warning  "> Note:</h5 >
-                <p class="mb-1"> Declaration of variable data you can see in below </p>
-                <p>
+                <h5 class="mt-5 mb-1 text-warning  font "> Note</h5 >
+                <p class="mb-1 font-2 bold"> The variable declarations of the data displayed on the graph can be seen as below:</p>
+                <p class=" font">
+                  <em>
                   low_high : low shock and high speed
+                  </em>
                 </p>
               </div>
             </div>

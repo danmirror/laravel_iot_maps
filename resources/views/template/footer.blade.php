@@ -1,3 +1,3 @@
-    <footer class="footer mt-3"> 
-     copyright &copy; <strong id="date"></strong>
+    <footer class="footer mt-3 font-2"> 
+     Copyright &copy;<span class="ml-1" id="date"></span>
     </footer>
