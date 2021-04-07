@@ -105,7 +105,7 @@ class dataController extends Controller
       }
       session::put('setting',$setting);
       
-      // dd(session('setting'));
+      //date
       if($request->date)
         session::put('date',$request->date);
       else
@@ -161,7 +161,13 @@ class dataController extends Controller
         }
       }
       session::put('setting',$setting);
-      
+
+      //date
+      if($request->date)
+        session::put('date',$request->date);
+      else
+        session::put('date',date("d-m-Y", strtotime(date("d-m-Y"))));
+
       // dd($setting);
       $username = Session('name');
       $user = User::where('name',$username)->first();
