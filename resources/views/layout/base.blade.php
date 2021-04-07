@@ -36,7 +36,7 @@
   <link href="{{asset('style/css/style.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body onload=todayDate()>
 @yield('content')
   <!-- /#wrapper -->
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script> -->
@@ -51,6 +51,12 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script> -->
   <!-- Menu Toggle Script -->
   <script>
+    function todayDate(){
+        var d = new Date();
+        var n = d.getFullYear() + "  ";
+        return document.getElementById("date").innerHTML = n;
+      }
+
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");

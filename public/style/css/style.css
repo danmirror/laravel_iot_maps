@@ -3,6 +3,8 @@
  * Copyright 2013-2019 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Montserrat:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400&family=Montserrat:wght@100&display=swap");
 #sidebar-wrapper {
   z-index: 99;
   min-height: 100vh;
@@ -177,6 +179,55 @@ hr {
   transform: translateX(100%);
 }
 
+html, body {
+  height: 100%;
+}
+
+#container {
+  width: auto;
+  min-height: 95vh;
+  margin: 0 auto;
+  display: flex;
+  padding: 2em;
+  align-items: center;
+  justify-content: center;
+}
+
+.boxed {
+  width: 30em;
+  padding: 2em;
+  border: 1px solid #ccc;
+}
+
+:root {
+  --blue-violet: #8A2BE2;
+  --blue-violet-hover:#b588df;
+  --slate-blue:#7B68EE;
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --gray: #eeeeee;
+  --light:#eef1f5;
+}
+
+.blue-violet {
+  color: var(--blue-violet);
+}
+
+.bg-blue-violet {
+  color: var(--white);
+  background-color: var(--blue-violet);
+}
+
+.bg-blue-violet:hover {
+  color: var(--white);
+  background-color: var(--blue-violet-hover);
+}
+
+.hover-blue-violet:hover {
+  color: var(--white);
+  background-color: var(--blue-violet-hover);
+}
+
 #map {
   position: absolute;
   top: 0;
@@ -188,6 +239,7 @@ hr {
   display: inline-block;
   width: 13px;
   height: 13px;
+  border-radius: 50%;
 }
 
 *:nth-child(1) > .legend {
@@ -224,6 +276,33 @@ hr {
 
 *:nth-child(9) > .legend {
   background-color: #ff9696;
+}
+
+.font {
+  font-family: "Josefin Sans", sans-serif;
+}
+
+html, body {
+  height: 100%;
+}
+
+#page-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.footer {
+  height: 4em;
+  background-color: var(--light);
+  display: flex;
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /*# sourceMappingURL=style.css.map */

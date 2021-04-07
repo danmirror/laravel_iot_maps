@@ -1,0 +1,25 @@
+:root {
+  --blue-violet : #8A2BE2;
+  --blue-violet-hover :#b588df;
+  --slate-blue:#7B68EE;
+  --blue: #1e90ff;
+  --white: #ffffff;
+  --gray : #eeeeee;
+  --light:#eef1f5;
+}
+.blue-violet{
+  color:var(--blue-violet);
+}
+.bg-blue-violet{
+  color:var(--white);
+  background-color:var(--blue-violet);
+}
+.bg-blue-violet:hover{
+  color:var(--white);
+  background-color:var(--blue-violet-hover);
+}
+
+.hover-blue-violet:hover{
+  color:var(--white);
+  background-color:var(--blue-violet-hover);
+}

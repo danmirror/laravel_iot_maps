@@ -1,0 +1,21 @@
+html, body {
+  height: 100%;
+}
+
+#container {
+  width: auto;
+  min-height: 95vh;
+  margin: 0 auto;
+  // border: 1px solid rgb(233, 64, 64);
+  display: flex;
+  padding: 2em;
+  align-items: center;
+  justify-content: center;
+}
+.boxed {
+  // height: 100px;
+  width: 30em;
+  padding: 2em;
+  // background: #efefef;
+  border: 1px solid #ccc;
+}
