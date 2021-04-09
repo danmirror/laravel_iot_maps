@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Data;
+use App\Models\Parameter;
 use Illuminate\Support\Facades\Session;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class userController extends Controller
 {
@@ -55,7 +56,32 @@ class userController extends Controller
       }
       $username = Session('name');
       $user = User::where('name',$username)->first();
-      return view('user.index',compact('user'));
+      $data = Data::where([['id_user',"=",$user->id]])->get();
+      
+      $car_array =[];
+      $active = 0;
+      foreach($data as $data_sort){
+        $times = strtotime(date($data_sort->updated_at));
+        $day = date("d-m-y",  $times+7*60*60);
+
+        $this_day = date("d-m-Y", strtotime(date("d-m-Y")));
+        if($day == $this_day)
+          $active +=1;
+
+        // get all car
+        if(!in_array($data_sort->id_car,$car_array)){
+          $car_array[]=$data_sort->id_car;
+
+        }
+      }
+
+      // dd(count($car_array));
+
+      return view('user.index',[
+        'user'=>$user,
+        'amount' =>count($car_array),
+        'active' =>$active,
+      ]);
     }
 
     /**

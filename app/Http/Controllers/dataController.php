@@ -108,7 +108,7 @@ class dataController extends Controller
       //date
       if($request->date)
         session::put('date',$request->date);
-      else
+      else //get this day
         session::put('date',date("d-m-Y", strtotime(date("d-m-Y"))));
 
       // dd($request->date);

@@ -51,15 +51,30 @@
             </p>
           </div>
           <div class="container-content mt-4 shadow">
-            <h5 class="font mb-1"> Status</h5 >
-            <div class="row">
-              <div class="col-md">
-                active = on
+            <h5 class="font mb-1">Status</h5 >
+            <div class="row justify-content-around ">
+              <div class="col-lg-3 col-md mb-2">
+                <div class="card hover-blue-violet" >
+                  <div class="card-body">
+                    <h6 class="card-title">Active</h6>
+                    @if($active>0)
+                      <p class="card-subtitle mb-2 text-muted text-center">True</p>
+                    @else
+                      <p class="card-subtitle mb-2 text-muted text-center">False</p>
+                    @endif
+                  </div>
+                </div>
               </div>
-              <div class="col-md">
-                car = 20
+              <div class="col-lg-3 col-md">
+                <div class="card hover-blue-violet">
+                  <div class="card-body">
+                    <h6 class="card-title">Amount</h6>
+                    <p class="card-subtitle mb-2 text-muted text-center">{{$amount}}</p>
+                  </div>
+                </div>
               </div>
             </div>
+            
           </div>
           
       </div>

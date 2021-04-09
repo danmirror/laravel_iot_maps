@@ -54,7 +54,7 @@
     function todayDate(){
         var d = new Date();
         var n = d.getFullYear() + "  ";
-        return document.getElementById("date").innerHTML = n;
+        return document.getElementById("date-update").innerHTML = n;
       }
 
     $("#menu-toggle").click(function(e) {
