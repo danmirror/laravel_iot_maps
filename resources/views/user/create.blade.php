@@ -2,22 +2,23 @@
 @section('title','Register')
 @section('content')
   <div class="container">
-    @if ($errors->any())
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
-    @if(session('alert'))
-      <div class="alert alert-warning" role="alert">
-      {{ session('alert') }}
-      </div>
-    @endif
     <div id="container">
-      <div class="boxed">
+      <div class="boxed rounded">
+        @if ($errors->any())
+          <div class="alert alert-danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+        @endif
+        @if(session('alert'))
+          <div class="alert alert-warning" role="alert">
+          {{ session('alert') }}
+          </div>
+        @endif
+
         <form action="{{route('userStore')}}" method="post">
         @csrf
         <div class="form-group">

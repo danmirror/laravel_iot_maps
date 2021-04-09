@@ -47,7 +47,8 @@
             <p class="font ml-2"> Welcome to Maps Navigation ...</pack>  
             <br>
             <br>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus architecto accusantium aut nobis rerum ullam quisquam non hic maiores est officiis, laborum nulla ratione modi incidunt numquam vero eaque. Saepe?
+            <p>
+            Use this software to monitor the state of the road route and your vehicle navigation, with the data analysis feature to make it easier for you. You can easily set data limits according to the environment you want!
             </p>
           </div>
           <div class="container-content mt-4 shadow">

@@ -320,6 +320,7 @@ html, body {
 
 .content {
   flex: 1 0 auto;
+  padding: 0 2em !important;
 }
 
 .footer {

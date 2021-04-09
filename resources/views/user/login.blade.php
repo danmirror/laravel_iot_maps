@@ -2,10 +2,8 @@
 @section('title','Login')
 @section('content')
   <div class="container">
-    
- 
       <div id="container">
-        <div class="boxed">
+        <div class="boxed rounded">
           @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
