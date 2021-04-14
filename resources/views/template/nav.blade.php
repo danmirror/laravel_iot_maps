@@ -1,4 +1,4 @@
-      <nav class="navbar navbar-expand navbar-light bg-light ">
+      <nav class="navbar fixed-nav navbar-expand navbar-light bg-light ">
         <div class="container-fluid">
           <div id="menu-toggle">
             <div id="nav-icon1">

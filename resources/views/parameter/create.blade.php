@@ -3,7 +3,7 @@
 @section('content')
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light shadow" id="sidebar-wrapper">
+    <div class="bg-light shadow fixed-sidebar" id="sidebar-wrapper">
       <div class="sidebar-heading">
         <img src="image/logo" alt="" style="width: 170px;">   
       </div>

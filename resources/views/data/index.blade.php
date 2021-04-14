@@ -3,7 +3,7 @@
 @section('content')
   <div class="d-flex" id="wrapper">
     <!-- Sidebar -->
-    <div class="bg-light shadow" id="sidebar-wrapper">
+    <div class="bg-light shadow fixed-sidebar" id="sidebar-wrapper">
       <div class="sidebar-heading">
         <img src="image/logo" alt="" style="width: 170px;">   
       </div>
@@ -47,7 +47,7 @@
         <div class="container-content shadow">
           <div class="row row justify-content-between">
             <div class="col-md-6">
-              <canvas id="myChart" width="400" height="400"></canvas>
+              <canvas id="myChart" ></canvas>
             </div>  
             <div class="col-md-5">
               <form action="" method="get">
@@ -108,9 +108,17 @@
 
           </div>
         </div>
-      </div>
+     
       
-      @include('template.footer')
+        <div class="container-content shadow mt-5">
+          <div class="row row ">
+            <div class="col-md">
+              <canvas id="range" width="400" height="100"></canvas>
+            </div>  
+          </div>
+        </div>
+
+        @include('template.footer')
       
     </div>
     <!-- /#page-content-wrapper -->
@@ -119,6 +127,11 @@
 
 <script>
 // console.log({{json_encode($approach)}});
+var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+if(width < 760){
+  document.getElementById('range').setAttribute("width", "100"); 
+  document.getElementById('range').setAttribute("height", "70"); 
+}
 
 $('#date').datepicker({
   format: 'dd-mm-yyyy',
@@ -163,6 +176,45 @@ var myChart = new Chart(ctx, {
         }
     }
 });
+
+var rg = document.getElementById('range');
+var range = new Chart(rg, {
+    type: 'line',
+    data: {
+        labels: ['Low_low', 'low_mid', 'low_high', 'mid_low', 'mid_mid', 'mid_high','high_low','high_mid','high_high'],
+        datasets: [{
+            label: 'Speed ranges',
+            data: {{json_encode($approach) }},
+            backgroundColor: [
+                // 'rgba(138,43,226 ,0.2 )',
+                'rgba(255, 99, 132, 0.2)',
+                // 'rgba(54, 162, 235, 0.2)',
+                // 'rgba(255, 206, 86, 0.2)',
+                // 'rgba(75, 192, 192, 0.2)',
+                // 'rgba(153, 102, 255, 0.2)',
+                // 'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                // 'rgba(138,43,226 ,0.2 )',
+                'rgba(255, 99, 132, 1)',
+                // 'rgba(54, 162, 235, 1)',
+                // 'rgba(255, 206, 86, 1)',
+                // 'rgba(75, 192, 192, 1)',
+                // 'rgba(153, 102, 255, 1)',
+                // 'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
 </script>
 
 </script>
