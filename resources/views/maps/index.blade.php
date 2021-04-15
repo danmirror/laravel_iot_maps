@@ -51,9 +51,9 @@
 
                   <div class="input-group mb-3 ">
                     <div class="input-group-prepend">
-                      <label class="input-group-text " for="inputGroupSelect01">Set ID</label>
+                      <label class="input-group-text " for="settings">Set ID</label>
                     </div>
-                    <select name="setting" class="custom-select setting" id="inputGroupSelect01">
+                    <select name="setting" class="custom-select setting" id="settings">
                       <option selected disabled hidden >{{session('setting')}}</option>
                       <?php $car_array = [];?>
 
@@ -140,6 +140,40 @@
             </div>
           </div>
           <div class="container-content shadow mt-5">
+            <div class="row justify-content-between ">
+              <div class="col-6 mb-4">
+                <h4 class="font mb-1">Status Sensor</h4 >
+              </div>
+              <div class="col-lg-5 col-md">
+                <form action="" method="get">
+
+                  <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text " for="param">Set Param</label>
+                    </div>
+                    <select name="param" class="custom-select " id="param">
+                        <option selected disabled hidden >{{session('param')}}</option>
+                        <option disabled >shock speed</option>
+                        <option value="low_low">low_low</option>
+                        <option value="low_mid">low_mid</1option>
+                        <option value="low_high">low_high</option>
+                        <option value="mid_low">mid_low</option>
+                        <option value="mid_mid">mid_mid</option>
+                        <option value="mid_high">mid_high</option>
+                    
+                    </select>
+                    <div class="input-group-append">
+                    <button class="btn bg-blue-violet d-flex ">
+                      <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
+                          <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                      </svg>
+                    </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+
             <canvas id="condition" width="400" height="100"></canvas>
           </div>
     </div>
@@ -157,7 +191,53 @@
   let data_trig_2=[];
   let data_2=[];
 
-  // rendah
+  // add sensor
+  let value_sensor_s = [];
+  let value_sensor_ax = [];
+  let value_sensor_ay = [];
+
+  // add data sensor zero for same all data in grafik
+  // low
+  let value_sensor_low_low_s = [];
+  let value_sensor_low_low_ax = [];
+  let value_sensor_low_low_ay = [];
+
+  let value_sensor_low_mid_s = [];
+  let value_sensor_low_mid_ax = [];
+  let value_sensor_low_mid_ay = [];
+
+  let value_sensor_low_high_s = [];
+  let value_sensor_low_high_ax = [];
+  let value_sensor_low_high_ay = [];
+
+  // mid
+  let value_sensor_mid_low_s = [];
+  let value_sensor_mid_low_ax= [];
+  let value_sensor_mid_low_ay = [];
+
+  let value_sensor_mid_mid_s = [];
+  let value_sensor_mid_mid_ax= [];
+  let value_sensor_mid_mid_ay = [];
+
+  let value_sensor_mid_high_s = [];
+  let value_sensor_mid_high_ax= [];
+  let value_sensor_mid_high_ay = [];
+  
+  // high
+  let value_sensor_high_low_s = [];
+  let value_sensor_high_low_ax = [];
+  let value_sensor_high_low_ay = [];
+
+  let value_sensor_high_mid_s = [];
+  let value_sensor_high_mid_ax = [];
+  let value_sensor_high_mid_ay = [];
+
+  let value_sensor_high_high_s = [];
+  let value_sensor_high_high_ax = [];
+  let value_sensor_high_high_ay = [];
+
+  
+  // goncangan rendah speed rendah
   let low_low = [];
   let data_low_low = [];
   let array_low_low = [];
@@ -196,16 +276,18 @@
   let data_high_high = [];
   let array_high_high = [];
 
+  <?php $time_array=[];?>
   @foreach($data as $data_all)
 
     @if(session('date'))
       <?php 
       $times = strtotime(date($data_all->updated_at));
       $times_day = date("d-m-Y",  $times+7*60*60);
-
+      $times_actual = date("h:i",  $times+7*60*60);
       ?>
       // dd(session::get('date'));
       @if(session('date') == $times_day)
+        <?php $time_array []= $times_actual; ?>
 
         data_trig_1.push(<?= $data_all->longitude; ?>);
         data_trig_1.push(<?= $data_all->latitude; ?>);
@@ -218,33 +300,86 @@
           $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa )
           
             @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              // stack value
               low_low.push(<?= $data_all->longitude; ?>);
               low_low.push(<?= $data_all->latitude; ?>);
               data_low_low.push(low_low);
               low_low =[];
+
+              // add data sensor
+              value_sensor_low_low_s.push(<?= $data_all->speed; ?>);
+              value_sensor_low_low_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_low_low_ay.push(<?= $data_all->ygyro; ?>);
+                          
             @else
+              // add data sensor zero for same all data in grafik
+              value_sensor_low_low_s.push(0);
+              value_sensor_low_low_ax.push(0);
+              value_sensor_low_low_ay.push(0);
+
+              // interance value in main array
               array_low_low.push( data_low_low);
               data_low_low = [];
             @endif
+
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
               low_mid.push(<?= $data_all->longitude; ?>);
               low_mid.push(<?= $data_all->latitude; ?>);
               data_low_mid.push(low_mid);
               low_mid =[];
+
+               // add data sensor
+              value_sensor_low_mid_s.push(<?= $data_all->speed; ?>);
+              value_sensor_low_mid_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_low_mid_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_low_mid_s.push(0);
+              value_sensor_low_mid_ax.push(0);
+              value_sensor_low_mid_ay.push(0);
+
+               // interance value in main array
               array_low_mid.push( data_low_mid);
               data_low_mid =[];
             @endif
+
             @if($data_all->speed >= $parameter->speedc)
               low_high.push(<?= $data_all->longitude; ?>);
               low_high.push(<?= $data_all->latitude; ?>);
               data_low_high.push(low_high);
               low_high =[];
+              
+              // add data sensor
+              value_sensor_low_high_s.push(<?= $data_all->speed; ?>);
+              value_sensor_low_high_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_low_high_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_low_high_s.push(0);
+              value_sensor_low_high_ax.push(0);
+              value_sensor_low_high_ay.push(0);
+
+               // interance value in main array
               array_low_high.push( data_low_high);
               data_low_high =[];
             @endif
+
         @else
+          value_sensor_low_low_s.push(0);
+          value_sensor_low_low_ax.push(0);
+          value_sensor_low_low_ay.push(0);
+
+          value_sensor_low_mid_s.push(0);
+          value_sensor_low_mid_ax.push(0);
+          value_sensor_low_mid_ay.push(0);
+
+          value_sensor_low_high_s.push(0);
+          value_sensor_low_high_ax.push(0);
+          value_sensor_low_high_ay.push(0);
+
+          //check if still have value
           if(data_low_low.length){
             array_low_low.push( data_low_low);
             data_low_low = [];
@@ -259,7 +394,7 @@
           }
         @endif
       
-          //goncangan sedang
+        //goncangan sedang
         @if($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
           $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb )
             
@@ -268,26 +403,80 @@
               mid_low.push(<?= $data_all->latitude; ?>);
               data_mid_low.push(mid_low);
               mid_low =[];
+
+              // add data sensor
+              value_sensor_mid_low_s.push(<?= $data_all->speed; ?>);
+              value_sensor_mid_low_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_mid_low_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_mid_low_s.push(0);
+              value_sensor_mid_low_ax.push(0);
+              value_sensor_mid_low_ay.push(0);
+
+               // interance value in main array
               array_mid_low.push( data_mid_low);
+              data_mid_low = [];
             @endif
+
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
               mid_mid.push(<?= $data_all->longitude; ?>);
               mid_mid.push(<?= $data_all->latitude; ?>);
               data_mid_mid.push(mid_mid);
               mid_mid =[];
+
+              // add data sensor
+              value_sensor_mid_mid_s.push(<?= $data_all->speed; ?>);
+              value_sensor_mid_mid_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_mid_mid_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_mid_mid_s.push(0);
+              value_sensor_mid_mid_ax.push(0);
+              value_sensor_mid_mid_ay.push(0);
+
+               // interance value in main array
               array_mid_mid.push( data_mid_mid);
+              data_mid_mid=[];
             @endif
+
             @if($data_all->speed >= $parameter->speedc)
               mid_high.push(<?= $data_all->longitude; ?>);
               mid_high.push(<?= $data_all->latitude; ?>);
               data_mid_high.push(mid_high);
               mid_high =[];
+
+              // add data sensor
+              value_sensor_mid_high_s.push(<?= $data_all->speed; ?>);
+              value_sensor_mid_high_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_mid_high_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_mid_high_s.push(0);
+              value_sensor_mid_high_ax.push(0);
+              value_sensor_mid_high_ay.push(0);
+
+               // interance value in main array
               array_mid_high.push( data_mid_high);
+              data_mid_high = [];
             @endif
         @else
+          value_sensor_mid_low_s.push(0);
+          value_sensor_mid_low_ax.push(0);
+          value_sensor_mid_low_ay.push(0);
+
+          value_sensor_mid_mid_s.push(0);
+          value_sensor_mid_mid_ax.push(0);
+          value_sensor_mid_mid_ay.push(0);
+
+          value_sensor_mid_high_s.push(0);
+          value_sensor_mid_high_ax.push(0);
+          value_sensor_mid_high_ay.push(0);
+
+          //check if still have value
           if(data_mid_low.length){
             array_mid_low.push( data_mid_low);
             data_mid_low = [];
@@ -302,7 +491,7 @@
           }
         @endif
 
-          //goncangan tinggi
+        //goncangan tinggi
         @if($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
           $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc )
           
@@ -311,26 +500,81 @@
               high_low.push(<?= $data_all->latitude; ?>);
               data_high_low.push(high_low);
               high_low =[];
+              
+              // add data sensor
+              value_sensor_high_low_s.push(<?= $data_all->speed; ?>);
+              value_sensor_high_low_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_high_low_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_high_low_s.push(0);
+              value_sensor_high_low_ax.push(0);
+              value_sensor_high_low_ay.push(0);
+
+               // interance value in main array
               array_high_low.push( data_high_low);
+              data_high_low = [];
             @endif
+
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
               high_mid.push(<?= $data_all->longitude; ?>);
               high_mid.push(<?= $data_all->latitude; ?>);
               data_high_mid.push(high_mid);
               high_mid =[];
+              
+              // add data sensor
+              value_sensor_high_mid_s.push(<?= $data_all->speed; ?>);
+              value_sensor_high_mid_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_high_mid_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+               // add data sensor
+              value_sensor_high_mid_s.push(0);
+              value_sensor_high_mid_ax.push(0);
+              value_sensor_high_mid_ay.push(0);
+
+               // interance value in main array
               array_high_mid.push( data_high_mid);
+              data_high_mid = [];
             @endif
+
             @if($data_all->speed >= $parameter->speedc)
               high_high.push(<?= $data_all->longitude; ?>);
               high_high.push(<?= $data_all->latitude; ?>);
               data_high_high.push(high_high);
               high_high =[];
+              
+              // add data sensor
+              value_sensor_high_high_s.push(<?= $data_all->speed; ?>);
+              value_sensor_high_high_ax.push(<?= $data_all->xgyro; ?>);
+              value_sensor_high_high_ay.push(<?= $data_all->ygyro; ?>);
+
             @else
+              // add data sensor
+              value_sensor_high_high_s.push(0);
+              value_sensor_high_high_ax.push(0);
+              value_sensor_high_high_ay.push(0);
+
+              // interance value in main array
               array_high_high.push( data_high_high);
+              data_high_high = [];
             @endif
+
         @else
+          value_sensor_high_low_s.push(0);
+          value_sensor_high_low_ax.push(0);
+          value_sensor_high_low_ay.push(0);
+
+          value_sensor_high_mid_s.push(0);
+          value_sensor_high_mid_ax.push(0);
+          value_sensor_high_mid_ay.push(0);
+
+          value_sensor_high_high_s.push(0);
+          value_sensor_high_high_ax.push(0);
+          value_sensor_high_high_ay.push(0);
+
+          //check if still have value
           if(data_high_low.length){
             array_high_low.push( data_high_low);
             data_high_low = [];
@@ -349,7 +593,7 @@
     @endif
   @endforeach
 
-  // console.log("cuk",array_mid_low);
+  // console.log("cuk",value_sensor_low_low_s);
   // console.log(data_1);
   //date
   $('#date').datepicker({
@@ -549,14 +793,63 @@
     document.getElementById('condition').setAttribute("width", "100"); 
     document.getElementById('condition').setAttribute("height", "70"); 
   }
+
+  //algoritma
+  @if(session('param')=="low_low")
+    value_sensor_s = value_sensor_low_low_s;
+    value_sensor_ax =value_sensor_low_low_ax;
+    value_sensor_ay = value_sensor_low_low_ay;
+
+  @elseif(session('param')=="low_mid")
+    value_sensor_s = value_sensor_low_mid_s;
+    value_sensor_ax =value_sensor_low_mid_ax;
+    value_sensor_ay = value_sensor_low_mid_ay;
+
+  @elseif(session('param')=="low_high")
+    value_sensor_s = value_sensor_low_high_s;
+    value_sensor_ax =value_sensor_low_high_ax;
+    value_sensor_ay = value_sensor_low_high_ay;
+
+  @elseif(session('param')=="mid_low")
+    value_sensor_s = value_sensor_mid_low_s;
+    value_sensor_ax =value_sensor_mid_low_ax;
+    value_sensor_ay = value_sensor_mid_low_ay;
+
+  @elseif(session('param')=="mid_mid")
+    value_sensor_s = value_sensor_mid_mid_s;
+    value_sensor_ax =value_sensor_mid_mid_ax;
+    value_sensor_ay = value_sensor_mid_mid_ay;
+
+  @elseif(session('param')=="mid_high")
+    value_sensor_s = value_sensor_mid_high_s;
+    value_sensor_ax =value_sensor_mid_high_ax;
+    value_sensor_ay = value_sensor_mid_high_ay;
+
+  @elseif(session('param')=="high_low")
+    value_sensor_s = value_sensor_high_low_s;
+    value_sensor_ax =value_sensor_high_low_ax;
+    value_sensor_ay = value_sensor_high_low_ay;
+
+  @elseif(session('param')=="high_mid")
+    value_sensor_s = value_sensor_high_mid_s;
+    value_sensor_ax =value_sensor_high_mid_ax;
+    value_sensor_ay = value_sensor_high_mid_ay;
+
+  @elseif(session('param')=="high_high")
+    value_sensor_s = value_sensor_high_high_s;
+    value_sensor_ax =value_sensor_high_high_ax;
+    value_sensor_ay = value_sensor_high_high_ay;
+  @endif
+
+  console.log("cuk",value_sensor_s);
   var con = document.getElementById('condition');
   var condition = new Chart(con, {
       type: 'line',
       data: {
-          labels: ['Low_low', 'low_mid', 'low_high', 'mid_low', 'mid_mid', 'mid_high','high_low','high_mid','high_high'],
+          labels:<?= json_encode($time_array)?>,
           datasets: [{
               label: 'Speed ranges',
-              data: [0,0,0,0,0],
+              data: value_sensor_s,
               backgroundColor: [
                   // 'rgba(138,43,226 ,0.2 )',
                   'rgba(255, 99, 132, 0.2)',
@@ -571,6 +864,52 @@
                   'rgba(255, 99, 132, 1)',
                   // 'rgba(54, 162, 235, 1)',
                   // 'rgba(255, 206, 86, 1)',
+                  // 'rgba(75, 192, 192, 1)',
+                  // 'rgba(153, 102, 255, 1)',
+                  // 'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          },
+          {
+              label: 'gyro x ranges',
+              data: value_sensor_ax,
+              backgroundColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  // 'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  // 'rgba(255, 206, 86, 0.2)',
+                  // 'rgba(75, 192, 192, 0.2)',
+                  // 'rgba(153, 102, 255, 0.2)',
+                  // 'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  // 'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  // 'rgba(255, 206, 86, 1)',
+                  // 'rgba(75, 192, 192, 1)',
+                  // 'rgba(153, 102, 255, 1)',
+                  // 'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          },
+          {
+              label: 'gyro y ranges',
+              data: value_sensor_ay,
+              backgroundColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  // 'rgba(255, 99, 132, 0.2)',
+                  // 'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  // 'rgba(75, 192, 192, 0.2)',
+                  // 'rgba(153, 102, 255, 0.2)',
+                  // 'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  // 'rgba(255, 99, 132, 1)',
+                  // 'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
                   // 'rgba(75, 192, 192, 1)',
                   // 'rgba(153, 102, 255, 1)',
                   // 'rgba(255, 159, 64, 1)'

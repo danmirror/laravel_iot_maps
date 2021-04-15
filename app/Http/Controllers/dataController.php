@@ -146,9 +146,20 @@ class dataController extends Controller
 
     public function index(Request $request)
     {
+      // dd($request->param);
       if(!Session::get('login')){
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
       }
+
+      //param session
+      if(!session::get('param')){
+        session::put('param',"low_low");
+      }
+      else if($request->param){
+        session::put('param',$request->param);
+      }
+
+      //setting session
       if(!session::get('setting')){
         $setting = 1;
       }
