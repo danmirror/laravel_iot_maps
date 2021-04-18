@@ -214,6 +214,14 @@ class dataController extends Controller
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
       }
 
+      //cycle session
+      if(!session::get('cycle')){
+        session::put('cycle',"1");
+      }
+      else if($request->cycle){
+        session::put('cycle',$request->cycle);
+      }
+
       //param session
       if(!session::get('param')){
         session::put('param',"low_low");
@@ -221,6 +229,7 @@ class dataController extends Controller
       else if($request->param){
         session::put('param',$request->param);
       }
+      
 
       //setting session
       if(!session::get('setting')){
@@ -250,12 +259,29 @@ class dataController extends Controller
       $parameter = Parameter::where('id_user',$user->id)->first();
       $data_setting = Data::where('id_user',$user->id)->get();
 
+
+      $length_cycle = 0;
+      foreach($data as $data_sort){
+        $times = strtotime(date($data_sort->updated_at));
+        $day = date("d-m-Y",  $times+7*60*60);
+        
+        // get length
+        if($day == Session::get('date')){
+          if($data_sort->cycle > $length_cycle){
+            $length_cycle = $data_sort->cycle;
+          }
+        }
+      }
+      // dd($length_cycle);
+        
+
       return view('maps.index',
       [
         'user'=>$user,
         'data'=>$data,
         'data_setting'=>$data_setting,
         'parameter' => $parameter,
+        'length_cycle'=>$length_cycle,
       ]);
     }
 
