@@ -21,6 +21,12 @@ class data_algo{
   public static $high_high = 0;
 
 
+  // speed range
+  public static $state_cycle=0;
+  public static $length = [];
+  public static $container = [];
+
+  //algoritma get count value
   public static function data_algo($data,$parameter){
 
     // $datasss = [];
@@ -31,19 +37,19 @@ class data_algo{
         // dd(session::get('date'));
         if(session::get('date') == $times_day){
           // $datasss[]=1;
-
-           //goncangan rendah
-          if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
-            $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa ){
+          
+          //goncangan tinggi
+          if($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
+            $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc ){
           
             if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-              self::$low_low +=1; 
+              self::$high_low +=1;
             elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-              self::$low_mid +=1;
+              self::$high_mid +=1;
             elseif($data_all->speed >= $parameter->speedc)
-              self::$low_high +=1;
-          
-            }
+              self::$high_high +=1;
+          }
+
           //goncangan sedang
           elseif($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
             $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb ){
@@ -54,18 +60,22 @@ class data_algo{
               self::$mid_mid +=1;
             elseif($data_all->speed >= $parameter->speedc)
               self::$mid_high +=1;
-            }
-          //goncangan tinggi
-          elseif($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
-            $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc ){
+          }
+
+           //goncangan rendah
+          elseif($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
+            $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa ){
           
             if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-              self::$high_low +=1;
+              self::$low_low +=1; 
             elseif($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-              self::$high_mid +=1;
+              self::$low_mid +=1;
             elseif($data_all->speed >= $parameter->speedc)
-              self::$high_high +=1;
+              self::$low_high +=1;
+          
           }
+          
+          
           
         }
       }
@@ -74,6 +84,55 @@ class data_algo{
     }
     // dd(  $datasss);
   }
+
+  public static function speed_range($data){
+    // $data_cycle = 6;
+
+    foreach($data as $data_all){
+      if(session::get('date')){
+        $times = strtotime(date($data_all->updated_at));
+        $times_day = date("d-m-Y",  $times+7*60*60);
+        // dd(session::get('date'));
+        if(session::get('date') == $times_day){
+          if($data_all->cycle >=  self::$state_cycle){
+            self::$state_cycle = $data_all->cycle;
+          }
+        }
+      }
+    }
+    // make container and length
+    for($iter =1; $iter <=self::$state_cycle; $iter ++){
+      ${"temp_array" . $iter}= [];
+      self::$length []=$iter;
+    }
+      
+    foreach($data as $data_all){
+      if(session::get('date')){
+        $times = strtotime(date($data_all->updated_at));
+        $times_day = date("d-m-Y",  $times+7*60*60);
+        // dd(session::get('date'));
+        if(session::get('date') == $times_day){
+          for($i=1; $i<=self::$state_cycle; $i++){
+            if($i == $data_all->cycle){
+              ${"temp_array" . $i}[] = $data_all->speed;
+            }
+          }
+        }
+      }
+    }
+    
+
+    $temp_array_val = 0;
+    for($iter_range =1; $iter_range <=self::$state_cycle; $iter_range ++){
+      foreach(${"temp_array" . $iter_range} as $temp_array){
+        $temp_array_val += (int)$temp_array;
+        
+      }
+      self::$container []=$temp_array_val/count(${"temp_array" . $iter_range});
+      $temp_array_val=0;
+    }
+  }
+
 }
 class dataController extends Controller
 {
@@ -126,6 +185,7 @@ class dataController extends Controller
         // $times = strtotime(date($data_sort->updated_at));
         // dd(date("d",  $times+7*60*60));
       // }
+      data_algo::speed_range($data);
 
       data_algo::data_algo($data,$parameter);
       $approach=[
@@ -133,6 +193,7 @@ class dataController extends Controller
         data_algo::$mid_low,data_algo::$mid_mid,data_algo::$mid_high,
         data_algo::$high_low,data_algo::$high_mid,data_algo::$high_high];
 
+      // dd(data_algo::$length,data_algo::$container);
       return view('data.index',
       [
         'user'=>$user,
@@ -140,6 +201,8 @@ class dataController extends Controller
         'data_setting'=>$data_setting,
         'parameter' => $parameter,
         'approach' =>$approach,
+        'container' =>data_algo::$container,
+        'length' =>data_algo::$length,
       ]);
     }
 
@@ -214,23 +277,19 @@ class dataController extends Controller
      */
     public function store(Request $request)
     {
-      $name = $request->name;
-      $username = User::where('name',$name)->first();
 
-      if(!$username){
+      $userid = User::where('id',$request->id_user)->first();
+
+      if(!$userid){
         return response()->json([
-          'name' => $name,
+          'id' => $request->id_user,
           'description' => 'Tidak terdaftar',
         ]);
       }
       else{
-        // return response()->json([
-        //   'name' => $name,
-        //   'description' => $request->xgyro,
-        // ]);
           $data =  new Data();
-          // dd($username->id);
-          $data->id_user = $username->id;
+          // dd($userid->id);
+          $data->id_user = $userid->id;
           $data->id_car = $request->id_car;
           $data->btn_empty = $request->btn_empty;
           $data->btn_filled = $request->btn_filled;
@@ -242,8 +301,12 @@ class dataController extends Controller
           $data->ygyro = $request->ygyro;
           $data->speed = $request->speed;
           $data->temp = $request->temp;
+          $data->cycle = $request->cycle;
           $data->save();
-          return redirect('login')->with('alert-success','Pendaftaran berhasil');
+          return response()->json([
+            'id' => $request->id_user,
+            'description' => 'success',
+          ]);
       }
     }
 

@@ -27,6 +27,7 @@ class CreateDataTable extends Migration
             $table->string('ygyro')->nullable();
             $table->string('speed')->nullable();
             $table->string('temp')->nullable();
+            $table->string('cycle');
             $table->timestamps();
         });
     }

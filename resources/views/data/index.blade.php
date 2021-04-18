@@ -177,14 +177,17 @@ var myChart = new Chart(ctx, {
     }
 });
 
+
+console.log(length);
+
 var rg = document.getElementById('range');
 var range = new Chart(rg, {
     type: 'line',
     data: {
-        labels: ['Low_low', 'low_mid', 'low_high', 'mid_low', 'mid_mid', 'mid_high','high_low','high_mid','high_high'],
+        labels: <?= json_encode($length)?>,
         datasets: [{
             label: 'Speed ranges',
-            data: {{json_encode($approach) }},
+            data: <?= json_encode($container)?>,
             backgroundColor: [
                 // 'rgba(138,43,226 ,0.2 )',
                 'rgba(255, 99, 132, 0.2)',

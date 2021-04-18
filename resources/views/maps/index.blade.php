@@ -301,6 +301,7 @@
           
             @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
               // stack value
+              console.log("low-low");
               low_low.push(<?= $data_all->longitude; ?>);
               low_low.push(<?= $data_all->latitude; ?>);
               data_low_low.push(low_low);
@@ -323,6 +324,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              console.log("low-mid");
               low_mid.push(<?= $data_all->longitude; ?>);
               low_mid.push(<?= $data_all->latitude; ?>);
               data_low_mid.push(low_mid);
@@ -345,6 +347,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedc)
+              console.log("low-high");
               low_high.push(<?= $data_all->longitude; ?>);
               low_high.push(<?= $data_all->latitude; ?>);
               data_low_high.push(low_high);
@@ -399,6 +402,7 @@
           $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb )
             
             @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              console.log("mid-low");
               mid_low.push(<?= $data_all->longitude; ?>);
               mid_low.push(<?= $data_all->latitude; ?>);
               data_mid_low.push(mid_low);
@@ -421,6 +425,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              console.log("mid-mid");
               mid_mid.push(<?= $data_all->longitude; ?>);
               mid_mid.push(<?= $data_all->latitude; ?>);
               data_mid_mid.push(mid_mid);
@@ -443,6 +448,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedc)
+              console.log("mid-high");
               mid_high.push(<?= $data_all->longitude; ?>);
               mid_high.push(<?= $data_all->latitude; ?>);
               data_mid_high.push(mid_high);
@@ -496,6 +502,7 @@
           $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc )
           
             @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+              console.log("high-low");
               high_low.push(<?= $data_all->longitude; ?>);
               high_low.push(<?= $data_all->latitude; ?>);
               data_high_low.push(high_low);
@@ -518,6 +525,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+              console.log("high-mid");
               high_mid.push(<?= $data_all->longitude; ?>);
               high_mid.push(<?= $data_all->latitude; ?>);
               data_high_mid.push(high_mid);
@@ -540,6 +548,7 @@
             @endif
 
             @if($data_all->speed >= $parameter->speedc)
+              console.log("high-high");
               high_high.push(<?= $data_all->longitude; ?>);
               high_high.push(<?= $data_all->latitude; ?>);
               data_high_high.push(high_high);
@@ -841,14 +850,14 @@
     value_sensor_ay = value_sensor_high_high_ay;
   @endif
 
-  console.log("cuk",value_sensor_s);
+  // console.log("cuk",value_sensor_s);
   var con = document.getElementById('condition');
   var condition = new Chart(con, {
       type: 'line',
       data: {
           labels:<?= json_encode($time_array)?>,
           datasets: [{
-              label: 'Speed ranges',
+              label: 'Data ranges',
               data: value_sensor_s,
               backgroundColor: [
                   // 'rgba(138,43,226 ,0.2 )',
