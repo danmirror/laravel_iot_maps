@@ -69,8 +69,16 @@
               <div class="col-lg-3 col-md">
                 <div class="card hover-blue-violet">
                   <div class="card-body">
-                    <h6 class="card-title">Amount</h6>
+                    <h6 class="card-title">Vehicle Amount</h6>
                     <p class="card-subtitle mb-2 text-muted text-center">{{$amount}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md">
+                <div class="card hover-blue-violet">
+                  <div class="card-body">
+                    <h6 class="card-title">Cycle Realtime</h6>
+                    <p class="card-subtitle mb-2 text-muted text-center">{{$length_cycle}}</p>
                   </div>
                 </div>
               </div>

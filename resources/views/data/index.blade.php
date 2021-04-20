@@ -42,8 +42,7 @@
 
       <div class="container content">
         <h3 class="mt-2 title">Data Distribution</h3>
-
-
+        
         <div class="container-content shadow">
           <div class="row row justify-content-between">
             <div class="col-md-6">
@@ -109,17 +108,15 @@
           </div>
         </div>
      
-      
         <div class="container-content shadow mt-5">
           <div class="row row ">
             <div class="col-md">
               <canvas id="range" width="400" height="100"></canvas>
             </div>  
           </div>
-        </div>
-
-        @include('template.footer')
-      
+        </div> 
+      </div>
+      @include('template.footer')
     </div>
     <!-- /#page-content-wrapper -->
   </div>
@@ -127,98 +124,97 @@
 
 <script>
 // console.log({{json_encode($approach)}});
-var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-if(width < 760){
-  document.getElementById('range').setAttribute("width", "100"); 
-  document.getElementById('range').setAttribute("height", "70"); 
-}
+  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+  if(width < 760){
+    document.getElementById('range').setAttribute("width", "100"); 
+    document.getElementById('range').setAttribute("height", "70"); 
+  }
 
-$('#date').datepicker({
-  format: 'dd-mm-yyyy',
-  autoclose:true
+  $('#date').datepicker({
+    format: 'dd-mm-yyyy',
+    autoclose:true
+    });
+
+
+  var ctx = document.getElementById('myChart');
+  var myChart = new Chart(ctx, {
+      type: 'radar',
+      data: {
+          labels: ['Low_low', 'low_mid', 'low_high', 'mid_low', 'mid_mid', 'mid_high','high_low','high_mid','high_high'],
+          datasets: [{
+              label: 'Data',
+              data: {{json_encode($approach) }},
+              backgroundColor: [
+                  'rgba(138,43,226 ,0.2 )',
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)',
+                  'rgba(255, 206, 86, 0.2)',
+                  'rgba(75, 192, 192, 0.2)',
+                  'rgba(153, 102, 255, 0.2)',
+                  'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(138,43,226 ,0.2 )',
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)',
+                  'rgba(255, 206, 86, 1)',
+                  'rgba(75, 192, 192, 1)',
+                  'rgba(153, 102, 255, 1)',
+                  'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              // y: {
+                  // beginAtZero: true
+              // }
+          }
+      }
   });
 
 
-var ctx = document.getElementById('myChart');
-var myChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-        labels: ['Low_low', 'low_mid', 'low_high', 'mid_low', 'mid_mid', 'mid_high','high_low','high_mid','high_high'],
-        datasets: [{
-            label: 'Data',
-            data: {{json_encode($approach) }},
-            backgroundColor: [
-                'rgba(138,43,226 ,0.2 )',
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(138,43,226 ,0.2 )',
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            // y: {
-                // beginAtZero: true
-            // }
-        }
-    }
-});
+  console.log(length);
 
-
-console.log(length);
-
-var rg = document.getElementById('range');
-var range = new Chart(rg, {
-    type: 'line',
-    data: {
-        labels: <?= json_encode($length)?>,
-        datasets: [{
-            label: 'Speed ranges',
-            data: <?= json_encode($container)?>,
-            backgroundColor: [
-                // 'rgba(138,43,226 ,0.2 )',
-                'rgba(255, 99, 132, 0.2)',
-                // 'rgba(54, 162, 235, 0.2)',
-                // 'rgba(255, 206, 86, 0.2)',
-                // 'rgba(75, 192, 192, 0.2)',
-                // 'rgba(153, 102, 255, 0.2)',
-                // 'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                // 'rgba(138,43,226 ,0.2 )',
-                'rgba(255, 99, 132, 1)',
-                // 'rgba(54, 162, 235, 1)',
-                // 'rgba(255, 206, 86, 1)',
-                // 'rgba(75, 192, 192, 1)',
-                // 'rgba(153, 102, 255, 1)',
-                // 'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
+  var rg = document.getElementById('range');
+  var range = new Chart(rg, {
+      type: 'line',
+      data: {
+          labels: <?= json_encode($length)?>,
+          datasets: [{
+              label: 'Speed ranges',
+              data: <?= json_encode($container)?>,
+              backgroundColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  'rgba(255, 99, 132, 0.2)',
+                  // 'rgba(54, 162, 235, 0.2)',
+                  // 'rgba(255, 206, 86, 0.2)',
+                  // 'rgba(75, 192, 192, 0.2)',
+                  // 'rgba(153, 102, 255, 0.2)',
+                  // 'rgba(255, 159, 64, 0.2)'
+              ],
+              borderColor: [
+                  // 'rgba(138,43,226 ,0.2 )',
+                  'rgba(255, 99, 132, 1)',
+                  // 'rgba(54, 162, 235, 1)',
+                  // 'rgba(255, 206, 86, 1)',
+                  // 'rgba(75, 192, 192, 1)',
+                  // 'rgba(153, 102, 255, 1)',
+                  // 'rgba(255, 159, 64, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
 
 </script>
 
-</script>
 @endsection

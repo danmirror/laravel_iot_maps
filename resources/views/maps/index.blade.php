@@ -39,930 +39,988 @@
 
     <!-- Page Content -->
     <div id="page-content-wrapper">
-    @include('template.nav')
+      @include('template.nav')
 
       <div class="container content">
         <h3 class="mt-2 title">Maps</h3>
-          <div class="container-content shadow">
+        <div class="container-content shadow">
 
-            <div class="row justify-content-around ">
-              <div class="col-lg-5 col-md">
-                <form action="" method="get">
+          <div class="row justify-content-around ">
+            <div class="col-lg-4 col-md">
+              <form action="" method="get">
 
-                  <div class="input-group mb-3 ">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text " for="settings">Set ID</label>
-                    </div>
-                    <select name="setting" class="custom-select setting" id="settings">
-                      <option selected disabled hidden >{{session('setting')}}</option>
-                      <?php $car_array = [];?>
-
-                      @foreach($data_setting as $data_car)
-                        @if(!in_array($data_car->id_car,$car_array))
-                        <?php $car_array[]= $data_car->id_car;?> 
-                        <option id="{{$data_car->id_car}}" value="{{$data_car->id_car}}">{{$data_car->id_car}}</option>
-                        @endif
-                      @endforeach
-
-                    </select>
-                    <div class="input-group-append">
-                    <button class="btn bg-blue-violet d-flex ">
-                      <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
-                          <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
-                      </svg>
-                    </button>
-                    </div>
+                <div class="input-group mb-3 ">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text " for="settings">Set ID</label>
                   </div>
-                </form>
-              </div>
+                  <select name="setting" class="custom-select setting" id="settings">
+                    <option selected disabled hidden >{{session('setting')}}</option>
+                    <?php $car_array = [];?>
 
-              <div class="col-lg-5 col-md">
-                <form action="" method="get">
+                    @foreach($data_setting as $data_car)
+                      @if(!in_array($data_car->id_car,$car_array))
+                      <?php $car_array[]= $data_car->id_car;?> 
+                      <option id="{{$data_car->id_car}}" value="{{$data_car->id_car}}">{{$data_car->id_car}}</option>
+                      @endif
+                    @endforeach
 
-                  <div class="input-group mb-3 ">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text " for="cycle">Set cycle</label>
-                    </div>
-                    <select name="cycle" class="custom-select setting" id="cycle">
-                      <option selected disabled hidden >{{session('cycle')}}</option>
-                      <?php $car_array = [];?>
-
-                      @for($i =1; $i<= $length_cycle;$i++)
-                        
-                        <option id="{{$i}}" value="{{$i}}">{{$i}}</option>
-                    
-                      @endfor
-
-                    </select>
-                    <div class="input-group-append">
-                    <button class="btn bg-blue-violet d-flex ">
-                      <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
-                          <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
-                      </svg>
-                    </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-              
-              <div class="col-lg-5 col-md">
-                <form action="" method="get">
-                  <div class="input-group mb-3 ">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text " for="select">Set Time</label>
-                    </div>
-
-                    <input class='form-control' type="text" id="date" name="date" value="{{session('date')}}">
-
-                    <div class="input-group-append">
-                    <button class="btn bg-blue-violet d-flex ">
+                  </select>
+                  <div class="input-group-append">
+                  <button class="btn bg-blue-violet d-flex ">
                     <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
                     </svg>
-                    </button>
-                    </div>
+                  </button>
                   </div>
-                </form>
-              </div>
+                </div>
+              </form>
             </div>
 
-  
-            <div class="row">
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed L shock H
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed L shock M
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed L shock L
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed M shock H
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed M shock M
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed M shock L
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed H shock H
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed H shock M
-              </div>
-              <div class="col-6 col-lg-4">
-                <div class="legend"></div>
-                speed H shock L
-              </div>
+            <div class="col-lg-4 col-md">
+              <form action="" method="get">
+
+                <div class="input-group mb-3 ">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text " for="cycle">Set cycle</label>
+                  </div>
+                  <select name="cycle" class="custom-select setting" id="cycle">
+                    <option selected disabled hidden >{{session('cycle')}}</option>
+                    <?php $car_array = [];?>
+
+                    @for($i =1; $i<= $length_cycle;$i++)
+                      
+                      <option id="{{$i}}" value="{{$i}}">{{$i}}</option>
+                  
+                    @endfor
+
+                  </select>
+                  <div class="input-group-append">
+                  <button class="btn bg-blue-violet d-flex ">
+                    <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                    </svg>
+                  </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div class="position-relative mt-4" style="min-height:500px">
-              <div id="map"></div>
+            
+            <div class="col-lg-4 col-md">
+              <form action="" method="get">
+                <div class="input-group mb-3 ">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text " for="select">Set Time</label>
+                  </div>
+
+                  <input class='form-control' type="text" id="date" name="date" value="{{session('date')}}">
+
+                  <div class="input-group-append">
+                  <button class="btn bg-blue-violet d-flex ">
+                  <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                  </svg>
+                  </button>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="container-content shadow mt-5">
-            <div class="row justify-content-between ">
-              <div class="col-6 mb-4">
-                <h4 class="font mb-1">Status Sensor</h4 >
-              </div>
-              <div class="col-lg-5 col-md">
-                <form action="" method="get">
 
-                  <div class="input-group mb-3 ">
-                    <div class="input-group-prepend">
-                      <label class="input-group-text " for="param">Set Param</label>
-                    </div>
-                    <select name="param" class="custom-select " id="param">
-                        <option selected disabled hidden >{{session('param')}}</option>
-                        <option disabled >shock speed</option>
-                        <option value="low_low">low_low</option>
-                        <option value="low_mid">low_mid</1option>
-                        <option value="low_high">low_high</option>
-                        <option value="mid_low">mid_low</option>
-                        <option value="mid_mid">mid_mid</option>
-                        <option value="mid_high">mid_high</option>
-                    
-                    </select>
-                    <div class="input-group-append">
-                    <button class="btn bg-blue-violet d-flex ">
-                      <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
-                          <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
-                      </svg>
-                    </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
+
+          <div class="row">
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed L shock H
             </div>
-
-            <canvas id="condition" width="400" height="100"></canvas>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed L shock M
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed L shock L
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed M shock H
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed M shock M
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed M shock L
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed H shock H
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed H shock M
+            </div>
+            <div class="col-6 col-lg-4">
+              <div class="legend"></div>
+              speed H shock L
+            </div>
           </div>
-    </div>
+          <div class="position-relative mt-4" style="min-height:500px">
+            <div id="map"></div>
+          </div>
+        </div>
+        <div class="container-content shadow mt-5">
+          <div class="row justify-content-between ">
+            <div class="col-6 mb-4">
+              <h4 class="font mb-1">Status Sensor</h4 >
+            </div>
+            <div class="col-lg-5 col-md">
+              <form action="" method="get">
+
+                <div class="input-group mb-3 ">
+                  <div class="input-group-prepend">
+                    <label class="input-group-text " for="param">Set Param</label>
+                  </div>
+                  <select name="param" class="custom-select " id="param">
+                      <option selected disabled hidden >{{session('param')}}</option>
+                      <option disabled >shock speed</option>
+                      <option value="low_low">low_low</option>
+                      <option value="low_mid">low_mid</1option>
+                      <option value="low_high">low_high</option>
+                      <option value="mid_low">mid_low</option>
+                      <option value="mid_mid">mid_mid</option>
+                      <option value="mid_high">mid_high</option>
+                  
+                  </select>
+                  <div class="input-group-append">
+                  <button class="btn bg-blue-violet d-flex ">
+                    <svg style="width:24px;height:2 4px" viewBox="0 0 24 24">
+                        <path fill="currentColor" d="M17 3H5C3.89 3 3 3.9 3 5V19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V7L17 3M19 19H5V5H16.17L19 7.83V19M12 12C10.34 12 9 13.34 9 15S10.34 18 12 18 15 16.66 15 15 13.66 12 12 12M6 6H15V10H6V6Z" />
+                    </svg>
+                  </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <canvas id="condition" width="400" height="100"></canvas>
+        </div>
+      </div>
       @include('template.footer')
-      
     </div>
     <!-- /#page-content-wrapper -->
   </div>
   
   <script>
-   document.getElementById("{{session('setting')}}").selected = "true"
- 
-  let data_trig_1=[];
-  let data_1=[];
-  let data_trig_2=[];
-  let data_2=[];
-
-  // add sensor
-  let value_sensor_s = [];
-  let value_sensor_ax = [];
-  let value_sensor_ay = [];
-
-  // add data sensor zero for same all data in grafik
-  // low
-  let value_sensor_low_low_s = [];
-  let value_sensor_low_low_ax = [];
-  let value_sensor_low_low_ay = [];
-
-  let value_sensor_low_mid_s = [];
-  let value_sensor_low_mid_ax = [];
-  let value_sensor_low_mid_ay = [];
-
-  let value_sensor_low_high_s = [];
-  let value_sensor_low_high_ax = [];
-  let value_sensor_low_high_ay = [];
-
-  // mid
-  let value_sensor_mid_low_s = [];
-  let value_sensor_mid_low_ax= [];
-  let value_sensor_mid_low_ay = [];
-
-  let value_sensor_mid_mid_s = [];
-  let value_sensor_mid_mid_ax= [];
-  let value_sensor_mid_mid_ay = [];
-
-  let value_sensor_mid_high_s = [];
-  let value_sensor_mid_high_ax= [];
-  let value_sensor_mid_high_ay = [];
+    document.getElementById("{{session('setting')}}").selected = "true"
   
-  // high
-  let value_sensor_high_low_s = [];
-  let value_sensor_high_low_ax = [];
-  let value_sensor_high_low_ay = [];
+    let data_trig_1=[];
+    let data_1=[];
+    let data_trig_2=[];
+    let data_2=[];
 
-  let value_sensor_high_mid_s = [];
-  let value_sensor_high_mid_ax = [];
-  let value_sensor_high_mid_ay = [];
+    // add sensor
+    let value_sensor_s = [];
+    let value_sensor_ax = [];
+    let value_sensor_ay = [];
 
-  let value_sensor_high_high_s = [];
-  let value_sensor_high_high_ax = [];
-  let value_sensor_high_high_ay = [];
+    // add data sensor zero for same all data in grafik
+    // low
+    let value_sensor_low_low_s = [];
+    let value_sensor_low_low_ax = [];
+    let value_sensor_low_low_ay = [];
 
-  
-  // goncangan rendah speed rendah
-  let low_low = [];
-  let data_low_low = [];
-  let array_low_low = [];
+    let value_sensor_low_mid_s = [];
+    let value_sensor_low_mid_ax = [];
+    let value_sensor_low_mid_ay = [];
 
-  let low_mid = [];
-  let data_low_mid = [];
-  let array_low_mid = [];
+    let value_sensor_low_high_s = [];
+    let value_sensor_low_high_ax = [];
+    let value_sensor_low_high_ay = [];
 
-  let low_high = [];
-  let data_low_high = [];
-  let array_low_high = [];
+    // mid
+    let value_sensor_mid_low_s = [];
+    let value_sensor_mid_low_ax= [];
+    let value_sensor_mid_low_ay = [];
 
-  // sedang
-  let mid_low = [];
-  let data_mid_low = [];
-  let array_mid_low = [];
+    let value_sensor_mid_mid_s = [];
+    let value_sensor_mid_mid_ax= [];
+    let value_sensor_mid_mid_ay = [];
 
-  let mid_mid = [];
-  let data_mid_mid = [];
-  let array_mid_mid = [];
+    let value_sensor_mid_high_s = [];
+    let value_sensor_mid_high_ax= [];
+    let value_sensor_mid_high_ay = [];
+    
+    // high
+    let value_sensor_high_low_s = [];
+    let value_sensor_high_low_ax = [];
+    let value_sensor_high_low_ay = [];
 
-  let mid_high = [];
-  let data_mid_high = [];
-  let array_mid_high = [];
+    let value_sensor_high_mid_s = [];
+    let value_sensor_high_mid_ax = [];
+    let value_sensor_high_mid_ay = [];
 
-  //tinggi
-  let high_low = [];
-  let data_high_low = [];
-  let array_high_low = [];
+    let value_sensor_high_high_s = [];
+    let value_sensor_high_high_ax = [];
+    let value_sensor_high_high_ay = [];
 
-  let high_mid = [];
-  let data_high_mid = [];
-  let array_high_mid = [];
+    
+    // goncangan rendah speed rendah
+    let low_low = [];
+    let data_low_low = [];
+    let array_low_low = [];
 
-  let high_high = [];
-  let data_high_high = [];
-  let array_high_high = [];
+    let low_mid = [];
+    let data_low_mid = [];
+    let array_low_mid = [];
 
-  <?php $time_array=[];?>
-  @foreach($data as $data_all)
+    let low_high = [];
+    let data_low_high = [];
+    let array_low_high = [];
 
-    @if(session('date'))
-      <?php 
-      $times = strtotime(date($data_all->updated_at));
-      $times_day = date("d-m-Y",  $times+7*60*60);
-      $times_actual = date("h:i",  $times+7*60*60);
-      ?>
-      // dd(session::get('date'));
-      @if(session('date') == $times_day && $data_all->cycle == session('cycle') )
-        <?php $time_array []= $times_actual; ?>
+    // sedang
+    let mid_low = [];
+    let data_mid_low = [];
+    let array_mid_low = [];
 
-        data_trig_1.push(<?= $data_all->longitude; ?>);
-        data_trig_1.push(<?= $data_all->latitude; ?>);
-        data_1.push(data_trig_1);
-        //reset
-        data_trig_1 = [];
-        console.log("count")
-        //goncangan rendah
-        @if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
-          $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa )
-          
-            @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-              // stack value
-              console.log("low-low");
-              low_low.push(<?= $data_all->longitude; ?>);
-              low_low.push(<?= $data_all->latitude; ?>);
-              data_low_low.push(low_low);
-              low_low =[];
+    let mid_mid = [];
+    let data_mid_mid = [];
+    let array_mid_mid = [];
 
-              // add data sensor
-              value_sensor_low_low_s.push(<?= $data_all->speed; ?>);
-              value_sensor_low_low_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_low_low_ay.push(<?= $data_all->ygyro; ?>);
-                          
-            @else
-              // add data sensor zero for same all data in grafik
-              value_sensor_low_low_s.push(0);
-              value_sensor_low_low_ax.push(0);
-              value_sensor_low_low_ay.push(0);
+    let mid_high = [];
+    let data_mid_high = [];
+    let array_mid_high = [];
 
-              // interance value in main array
+    //tinggi
+    let high_low = [];
+    let data_high_low = [];
+    let array_high_low = [];
+
+    let high_mid = [];
+    let data_high_mid = [];
+    let array_high_mid = [];
+
+    let high_high = [];
+    let data_high_high = [];
+    let array_high_high = [];
+
+    <?php $time_array=[];?>
+    @foreach($data as $data_all)
+
+      @if(session('date'))
+        <?php 
+        $times = strtotime(date($data_all->updated_at));
+        $times_day = date("d-m-Y",  $times+7*60*60);
+        $times_actual = date("H:i",  $times+7*60*60);
+        ?>
+        @if(session('date') == $times_day && $data_all->cycle == session('cycle') )
+          <?php $time_array []= $times_actual; ?>
+
+          data_trig_1.push(<?= $data_all->longitude; ?>);
+          data_trig_1.push(<?= $data_all->latitude; ?>);
+          data_1.push(data_trig_1);
+          //reset
+          data_trig_1 = [];
+          console.log("count")
+          //goncangan rendah
+          @if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
+            $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa )
+            
+              @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+                // stack value
+                console.log("low-low");
+                low_low.push(<?= $data_all->longitude; ?>);
+                low_low.push(<?= $data_all->latitude; ?>);
+                data_low_low.push(low_low);
+                low_low =[];
+
+                // add data sensor
+                value_sensor_low_low_s.push(<?= $data_all->speed; ?>);
+                value_sensor_low_low_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_low_low_ay.push(<?= $data_all->ygyro; ?>);
+                            
+              @else
+                // add data sensor zero for same all data in grafik
+                value_sensor_low_low_s.push(0);
+                value_sensor_low_low_ax.push(0);
+                value_sensor_low_low_ay.push(0);
+
+                // interance value in main array
+                array_low_low.push( data_low_low);
+                data_low_low = [];
+              @endif
+
+              @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+                console.log("low-mid");
+                low_mid.push(<?= $data_all->longitude; ?>);
+                low_mid.push(<?= $data_all->latitude; ?>);
+                data_low_mid.push(low_mid);
+                low_mid =[];
+
+                // add data sensor
+                value_sensor_low_mid_s.push(<?= $data_all->speed; ?>);
+                value_sensor_low_mid_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_low_mid_ay.push(<?= $data_all->ygyro; ?>);
+
+              @else
+                // add data sensor
+                value_sensor_low_mid_s.push(0);
+                value_sensor_low_mid_ax.push(0);
+                value_sensor_low_mid_ay.push(0);
+
+                // interance value in main array
+                array_low_mid.push( data_low_mid);
+                data_low_mid =[];
+              @endif
+
+              @if($data_all->speed >= $parameter->speedc)
+                console.log("low-high");
+                low_high.push(<?= $data_all->longitude; ?>);
+                low_high.push(<?= $data_all->latitude; ?>);
+                data_low_high.push(low_high);
+                low_high =[];
+                
+                // add data sensor
+                value_sensor_low_high_s.push(<?= $data_all->speed; ?>);
+                value_sensor_low_high_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_low_high_ay.push(<?= $data_all->ygyro; ?>);
+
+              @else
+                // add data sensor
+                value_sensor_low_high_s.push(0);
+                value_sensor_low_high_ax.push(0);
+                value_sensor_low_high_ay.push(0);
+
+                // interance value in main array
+                array_low_high.push( data_low_high);
+                data_low_high =[];
+              @endif
+
+          @else
+            value_sensor_low_low_s.push(0);
+            value_sensor_low_low_ax.push(0);
+            value_sensor_low_low_ay.push(0);
+
+            value_sensor_low_mid_s.push(0);
+            value_sensor_low_mid_ax.push(0);
+            value_sensor_low_mid_ay.push(0);
+
+            value_sensor_low_high_s.push(0);
+            value_sensor_low_high_ax.push(0);
+            value_sensor_low_high_ay.push(0);
+
+            //check if still have value
+            if(data_low_low.length){
               array_low_low.push( data_low_low);
               data_low_low = [];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-              console.log("low-mid");
-              low_mid.push(<?= $data_all->longitude; ?>);
-              low_mid.push(<?= $data_all->latitude; ?>);
-              data_low_mid.push(low_mid);
-              low_mid =[];
-
-               // add data sensor
-              value_sensor_low_mid_s.push(<?= $data_all->speed; ?>);
-              value_sensor_low_mid_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_low_mid_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-               // add data sensor
-              value_sensor_low_mid_s.push(0);
-              value_sensor_low_mid_ax.push(0);
-              value_sensor_low_mid_ay.push(0);
-
-               // interance value in main array
+            }
+            if(data_low_mid.length){
               array_low_mid.push( data_low_mid);
               data_low_mid =[];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedc)
-              console.log("low-high");
-              low_high.push(<?= $data_all->longitude; ?>);
-              low_high.push(<?= $data_all->latitude; ?>);
-              data_low_high.push(low_high);
-              low_high =[];
-              
-              // add data sensor
-              value_sensor_low_high_s.push(<?= $data_all->speed; ?>);
-              value_sensor_low_high_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_low_high_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-               // add data sensor
-              value_sensor_low_high_s.push(0);
-              value_sensor_low_high_ax.push(0);
-              value_sensor_low_high_ay.push(0);
-
-               // interance value in main array
+            }
+            if(data_low_high.length){
               array_low_high.push( data_low_high);
               data_low_high =[];
-            @endif
+            }
+          @endif
+        
+          //goncangan sedang
+          @if($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
+            $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb )
+              
+              @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+                console.log("mid-low");
+                mid_low.push(<?= $data_all->longitude; ?>);
+                mid_low.push(<?= $data_all->latitude; ?>);
+                data_mid_low.push(mid_low);
+                mid_low =[];
 
-        @else
-          value_sensor_low_low_s.push(0);
-          value_sensor_low_low_ax.push(0);
-          value_sensor_low_low_ay.push(0);
+                // add data sensor
+                value_sensor_mid_low_s.push(<?= $data_all->speed; ?>);
+                value_sensor_mid_low_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_mid_low_ay.push(<?= $data_all->ygyro; ?>);
 
-          value_sensor_low_mid_s.push(0);
-          value_sensor_low_mid_ax.push(0);
-          value_sensor_low_mid_ay.push(0);
+              @else
+                // add data sensor
+                value_sensor_mid_low_s.push(0);
+                value_sensor_mid_low_ax.push(0);
+                value_sensor_mid_low_ay.push(0);
 
-          value_sensor_low_high_s.push(0);
-          value_sensor_low_high_ax.push(0);
-          value_sensor_low_high_ay.push(0);
+                // interance value in main array
+                array_mid_low.push( data_mid_low);
+                data_mid_low = [];
+              @endif
 
-          //check if still have value
-          if(data_low_low.length){
-            array_low_low.push( data_low_low);
-            data_low_low = [];
-          }
-          if(data_low_mid.length){
-            array_low_mid.push( data_low_mid);
-            data_low_mid =[];
-          }
-          if(data_low_high.length){
-            array_low_high.push( data_low_high);
-            data_low_high =[];
-          }
-        @endif
-      
-        //goncangan sedang
-        @if($data_all->xgyro > $parameter->xminb && $data_all->xgyro < $parameter->xmaxb ||
-          $data_all->ygyro > $parameter->yminb && $data_all->ygyro < $parameter->ymaxb )
-            
-            @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-              console.log("mid-low");
-              mid_low.push(<?= $data_all->longitude; ?>);
-              mid_low.push(<?= $data_all->latitude; ?>);
-              data_mid_low.push(mid_low);
-              mid_low =[];
+              @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+                console.log("mid-mid");
+                mid_mid.push(<?= $data_all->longitude; ?>);
+                mid_mid.push(<?= $data_all->latitude; ?>);
+                data_mid_mid.push(mid_mid);
+                mid_mid =[];
 
-              // add data sensor
-              value_sensor_mid_low_s.push(<?= $data_all->speed; ?>);
-              value_sensor_mid_low_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_mid_low_ay.push(<?= $data_all->ygyro; ?>);
+                // add data sensor
+                value_sensor_mid_mid_s.push(<?= $data_all->speed; ?>);
+                value_sensor_mid_mid_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_mid_mid_ay.push(<?= $data_all->ygyro; ?>);
 
-            @else
-               // add data sensor
-              value_sensor_mid_low_s.push(0);
-              value_sensor_mid_low_ax.push(0);
-              value_sensor_mid_low_ay.push(0);
+              @else
+                // add data sensor
+                value_sensor_mid_mid_s.push(0);
+                value_sensor_mid_mid_ax.push(0);
+                value_sensor_mid_mid_ay.push(0);
 
-               // interance value in main array
+                // interance value in main array
+                array_mid_mid.push( data_mid_mid);
+                data_mid_mid=[];
+              @endif
+
+              @if($data_all->speed >= $parameter->speedc)
+                console.log("mid-high");
+                mid_high.push(<?= $data_all->longitude; ?>);
+                mid_high.push(<?= $data_all->latitude; ?>);
+                data_mid_high.push(mid_high);
+                mid_high =[];
+
+                // add data sensor
+                value_sensor_mid_high_s.push(<?= $data_all->speed; ?>);
+                value_sensor_mid_high_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_mid_high_ay.push(<?= $data_all->ygyro; ?>);
+
+              @else
+                // add data sensor
+                value_sensor_mid_high_s.push(0);
+                value_sensor_mid_high_ax.push(0);
+                value_sensor_mid_high_ay.push(0);
+
+                // interance value in main array
+                array_mid_high.push( data_mid_high);
+                data_mid_high = [];
+              @endif
+          @else
+            value_sensor_mid_low_s.push(0);
+            value_sensor_mid_low_ax.push(0);
+            value_sensor_mid_low_ay.push(0);
+
+            value_sensor_mid_mid_s.push(0);
+            value_sensor_mid_mid_ax.push(0);
+            value_sensor_mid_mid_ay.push(0);
+
+            value_sensor_mid_high_s.push(0);
+            value_sensor_mid_high_ax.push(0);
+            value_sensor_mid_high_ay.push(0);
+
+            //check if still have value
+            if(data_mid_low.length){
               array_mid_low.push( data_mid_low);
               data_mid_low = [];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-              console.log("mid-mid");
-              mid_mid.push(<?= $data_all->longitude; ?>);
-              mid_mid.push(<?= $data_all->latitude; ?>);
-              data_mid_mid.push(mid_mid);
-              mid_mid =[];
-
-              // add data sensor
-              value_sensor_mid_mid_s.push(<?= $data_all->speed; ?>);
-              value_sensor_mid_mid_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_mid_mid_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-               // add data sensor
-              value_sensor_mid_mid_s.push(0);
-              value_sensor_mid_mid_ax.push(0);
-              value_sensor_mid_mid_ay.push(0);
-
-               // interance value in main array
+            }
+            if(data_mid_mid.length){
               array_mid_mid.push( data_mid_mid);
-              data_mid_mid=[];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedc)
-              console.log("mid-high");
-              mid_high.push(<?= $data_all->longitude; ?>);
-              mid_high.push(<?= $data_all->latitude; ?>);
-              data_mid_high.push(mid_high);
-              mid_high =[];
-
-              // add data sensor
-              value_sensor_mid_high_s.push(<?= $data_all->speed; ?>);
-              value_sensor_mid_high_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_mid_high_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-               // add data sensor
-              value_sensor_mid_high_s.push(0);
-              value_sensor_mid_high_ax.push(0);
-              value_sensor_mid_high_ay.push(0);
-
-               // interance value in main array
+              data_mid_mid =[];
+            }
+            if(data_mid_high.length){
               array_mid_high.push( data_mid_high);
-              data_mid_high = [];
-            @endif
-        @else
-          value_sensor_mid_low_s.push(0);
-          value_sensor_mid_low_ax.push(0);
-          value_sensor_mid_low_ay.push(0);
+              data_mid_high =[];
+            }
+          @endif
 
-          value_sensor_mid_mid_s.push(0);
-          value_sensor_mid_mid_ax.push(0);
-          value_sensor_mid_mid_ay.push(0);
+          //goncangan tinggi
+          @if($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
+            $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc )
+            
+              @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
+                console.log("high-low");
+                high_low.push(<?= $data_all->longitude; ?>);
+                high_low.push(<?= $data_all->latitude; ?>);
+                data_high_low.push(high_low);
+                high_low =[];
+                
+                // add data sensor
+                value_sensor_high_low_s.push(<?= $data_all->speed; ?>);
+                value_sensor_high_low_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_high_low_ay.push(<?= $data_all->ygyro; ?>);
 
-          value_sensor_mid_high_s.push(0);
-          value_sensor_mid_high_ax.push(0);
-          value_sensor_mid_high_ay.push(0);
+              @else
+                // add data sensor
+                value_sensor_high_low_s.push(0);
+                value_sensor_high_low_ax.push(0);
+                value_sensor_high_low_ay.push(0);
 
-          //check if still have value
-          if(data_mid_low.length){
-            array_mid_low.push( data_mid_low);
-            data_mid_low = [];
-          }
-          if(data_mid_mid.length){
-            array_mid_mid.push( data_mid_mid);
-            data_mid_mid =[];
-          }
-          if(data_mid_high.length){
-            array_mid_high.push( data_mid_high);
-            data_mid_high =[];
-          }
-        @endif
+                // interance value in main array
+                array_high_low.push( data_high_low);
+                data_high_low = [];
+              @endif
 
-        //goncangan tinggi
-        @if($data_all->xgyro > $parameter->xminc && $data_all->xgyro < $parameter->xmaxc ||
-          $data_all->ygyro > $parameter->yminc && $data_all->ygyro < $parameter->ymaxc )
-          
-            @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
-              console.log("high-low");
-              high_low.push(<?= $data_all->longitude; ?>);
-              high_low.push(<?= $data_all->latitude; ?>);
-              data_high_low.push(high_low);
-              high_low =[];
-              
-              // add data sensor
-              value_sensor_high_low_s.push(<?= $data_all->speed; ?>);
-              value_sensor_high_low_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_high_low_ay.push(<?= $data_all->ygyro; ?>);
+              @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
+                console.log("high-mid");
+                high_mid.push(<?= $data_all->longitude; ?>);
+                high_mid.push(<?= $data_all->latitude; ?>);
+                data_high_mid.push(high_mid);
+                high_mid =[];
+                
+                // add data sensor
+                value_sensor_high_mid_s.push(<?= $data_all->speed; ?>);
+                value_sensor_high_mid_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_high_mid_ay.push(<?= $data_all->ygyro; ?>);
 
-            @else
-               // add data sensor
-              value_sensor_high_low_s.push(0);
-              value_sensor_high_low_ax.push(0);
-              value_sensor_high_low_ay.push(0);
+              @else
+                // add data sensor
+                value_sensor_high_mid_s.push(0);
+                value_sensor_high_mid_ax.push(0);
+                value_sensor_high_mid_ay.push(0);
 
-               // interance value in main array
+                // interance value in main array
+                array_high_mid.push( data_high_mid);
+                data_high_mid = [];
+              @endif
+
+              @if($data_all->speed >= $parameter->speedc)
+                console.log("high-high");
+                high_high.push(<?= $data_all->longitude; ?>);
+                high_high.push(<?= $data_all->latitude; ?>);
+                data_high_high.push(high_high);
+                high_high =[];
+                
+                // add data sensor
+                value_sensor_high_high_s.push(<?= $data_all->speed; ?>);
+                value_sensor_high_high_ax.push(<?= $data_all->xgyro; ?>);
+                value_sensor_high_high_ay.push(<?= $data_all->ygyro; ?>);
+
+              @else
+                // add data sensor
+                value_sensor_high_high_s.push(0);
+                value_sensor_high_high_ax.push(0);
+                value_sensor_high_high_ay.push(0);
+
+                // interance value in main array
+                array_high_high.push( data_high_high);
+                data_high_high = [];
+              @endif
+
+          @else
+            value_sensor_high_low_s.push(0);
+            value_sensor_high_low_ax.push(0);
+            value_sensor_high_low_ay.push(0);
+
+            value_sensor_high_mid_s.push(0);
+            value_sensor_high_mid_ax.push(0);
+            value_sensor_high_mid_ay.push(0);
+
+            value_sensor_high_high_s.push(0);
+            value_sensor_high_high_ax.push(0);
+            value_sensor_high_high_ay.push(0);
+
+            //check if still have value
+            if(data_high_low.length){
               array_high_low.push( data_high_low);
               data_high_low = [];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
-              console.log("high-mid");
-              high_mid.push(<?= $data_all->longitude; ?>);
-              high_mid.push(<?= $data_all->latitude; ?>);
-              data_high_mid.push(high_mid);
-              high_mid =[];
-              
-              // add data sensor
-              value_sensor_high_mid_s.push(<?= $data_all->speed; ?>);
-              value_sensor_high_mid_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_high_mid_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-               // add data sensor
-              value_sensor_high_mid_s.push(0);
-              value_sensor_high_mid_ax.push(0);
-              value_sensor_high_mid_ay.push(0);
-
-               // interance value in main array
+            }
+            if(data_high_mid.length){
               array_high_mid.push( data_high_mid);
-              data_high_mid = [];
-            @endif
-
-            @if($data_all->speed >= $parameter->speedc)
-              console.log("high-high");
-              high_high.push(<?= $data_all->longitude; ?>);
-              high_high.push(<?= $data_all->latitude; ?>);
-              data_high_high.push(high_high);
-              high_high =[];
-              
-              // add data sensor
-              value_sensor_high_high_s.push(<?= $data_all->speed; ?>);
-              value_sensor_high_high_ax.push(<?= $data_all->xgyro; ?>);
-              value_sensor_high_high_ay.push(<?= $data_all->ygyro; ?>);
-
-            @else
-              // add data sensor
-              value_sensor_high_high_s.push(0);
-              value_sensor_high_high_ax.push(0);
-              value_sensor_high_high_ay.push(0);
-
-              // interance value in main array
+              data_high_mid =[];
+            }
+            if(data_high_high.length){
               array_high_high.push( data_high_high);
-              data_high_high = [];
-            @endif
+              data_high_high =[];
+            }
+          @endif
 
-        @else
-          value_sensor_high_low_s.push(0);
-          value_sensor_high_low_ax.push(0);
-          value_sensor_high_low_ay.push(0);
-
-          value_sensor_high_mid_s.push(0);
-          value_sensor_high_mid_ax.push(0);
-          value_sensor_high_mid_ay.push(0);
-
-          value_sensor_high_high_s.push(0);
-          value_sensor_high_high_ax.push(0);
-          value_sensor_high_high_ay.push(0);
-
-          //check if still have value
-          if(data_high_low.length){
-            array_high_low.push( data_high_low);
-            data_high_low = [];
-          }
-          if(data_high_mid.length){
-            array_high_mid.push( data_high_mid);
-            data_high_mid =[];
-          }
-          if(data_high_high.length){
-            array_high_high.push( data_high_high);
-            data_high_high =[];
-          }
         @endif
-
       @endif
-    @endif
-  @endforeach
+    @endforeach
 
-  // console.log("cuk",value_sensor_low_low_s);
-  // console.log(data_1);
-  //date
-  $('#date').datepicker({
-  format: 'dd-mm-yyyy',
-  autoclose:true
-  });
-
-  
-  mapboxgl.accessToken = 'pk.eyJ1IjoiZGFudWFuZHJlYW4iLCJhIjoiY2tteHBhOTFyMHI0aTJwcXNpcTIwYjNleSJ9.oMR_l45ewZHKxkXUmEjDcg';
-  var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v11',
-  center: data_1[0],
-  zoom: 13
-  });
-
-  data_nav = [];
-  //add data normal
-  data_nav.push(
-    {
-      'type': 'Feature',
-      'properties': {
-        'color': '#80b3ff' //biru
-      },
-      'geometry': {
-        'type': 'LineString',
-        'coordinates': data_1
-      }
+    // console.log("cuk",value_sensor_low_low_s);
+    // console.log(data_1);
+    //date
+    $('#date').datepicker({
+    format: 'dd-mm-yyyy',
+    autoclose:true
     });
 
-  // var data_partial =[[[109.95656,-7.382794],[109.95656,-7.382400]],[[109.95656,-7.382200],[109.956569,-7.382000]]];
-  
-  //rendah
-  for (let i in array_low_low){
-    // console.log(data_partial[i]);
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#abffab' // green  
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_low_low[i],
-          // data_1,
-        }
-      });
-  }
-  for (let i in array_low_mid){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#fff38f' // yellow
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_low_mid[i],
-          // data_1,
-        }
-      });
-  }
- 
-  for (let i in array_low_high){
-    // console.log("log " ,array_low_high);
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#ff9696' // red
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_low_high[i],
-          // data_1,
-        }
-      });
-  }
-
-  //sedang
-  for (let i in array_mid_low){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#00ff00' // green  
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_mid_low[i],
-          // data_1,
-        }
-      });
-  }
-  for (let i in array_mid_mid){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#ffe512' // yellow
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_mid_mid[i],
-          // data_1,
-        }
-      });
-  }
- 
-  for (let i in array_mid_high){
-    // console.log("log " ,array_mid_high);
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#ff1212' // red
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_mid_high[i],
-          // data_1,
-        }
-      });
-  }
-
-  //tinggi
-  for (let i in array_high_low){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#20d020' // green  
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_high_low[i],
-          // data_1,
-        }
-      });
-  }
-  for (let i in array_high_mid){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#bfab02' // yellow
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_high_mid[i],
-          // data_1,
-        }
-      });
-  }
- 
-  for (let i in array_high_high){
-    data_nav.push(
-      {
-        'type': 'Feature',
-        'properties': {
-          'color': '#bd0303' // red
-        },
-        'geometry': {
-          'type': 'LineString',
-          'coordinates': array_high_high[i],
-          // data_1,
-        }
-      });
-  }
-  
-
-  var features = data_nav;
-  
-  map.on('load', function () {
-    map.addSource('lines', {
-      'type': 'geojson',
-      'data': {
-      'type': 'FeatureCollection',
-      'features': features
-      }
+    
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZGFudWFuZHJlYW4iLCJhIjoiY2tteHBhOTFyMHI0aTJwcXNpcTIwYjNleSJ9.oMR_l45ewZHKxkXUmEjDcg';
+    var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: data_1[0],
+    zoom: 13
     });
-    map.addLayer({
-      'id': 'lines',
-      'type': 'line',
-      'source': 'lines',
-      'paint': {
-      'line-width': 8,
-      // Use a get expression (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-get)
-      // to set the line-color to a feature property value.
-      'line-color': ['get', 'color']
-      }
-    });
-  });
 
-  var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-  if(width < 760){
-    document.getElementById('condition').setAttribute("width", "100"); 
-    document.getElementById('condition').setAttribute("height", "70"); 
-  }
+    data_nav = [];
+    //add data normal
+    data_nav.push(
+      {
+        'type': 'Feature',
+        'properties': {
+          'color': '#80b3ff', //biru
+          'description':
+                '<strong>Data base line</strong><p>Data ini berisi data base yang tidak mempunyai data dari sensor</p>'
+          
+        },
+        'geometry': {
+          'type': 'LineString',
+          'coordinates': data_1
+        }
+      });
 
-  //algoritma
-  @if(session('param')=="low_low")
-    value_sensor_s = value_sensor_low_low_s;
-    value_sensor_ax =value_sensor_low_low_ax;
-    value_sensor_ay = value_sensor_low_low_ay;
-
-  @elseif(session('param')=="low_mid")
-    value_sensor_s = value_sensor_low_mid_s;
-    value_sensor_ax =value_sensor_low_mid_ax;
-    value_sensor_ay = value_sensor_low_mid_ay;
-
-  @elseif(session('param')=="low_high")
-    value_sensor_s = value_sensor_low_high_s;
-    value_sensor_ax =value_sensor_low_high_ax;
-    value_sensor_ay = value_sensor_low_high_ay;
-
-  @elseif(session('param')=="mid_low")
-    value_sensor_s = value_sensor_mid_low_s;
-    value_sensor_ax =value_sensor_mid_low_ax;
-    value_sensor_ay = value_sensor_mid_low_ay;
-
-  @elseif(session('param')=="mid_mid")
-    value_sensor_s = value_sensor_mid_mid_s;
-    value_sensor_ax =value_sensor_mid_mid_ax;
-    value_sensor_ay = value_sensor_mid_mid_ay;
-
-  @elseif(session('param')=="mid_high")
-    value_sensor_s = value_sensor_mid_high_s;
-    value_sensor_ax =value_sensor_mid_high_ax;
-    value_sensor_ay = value_sensor_mid_high_ay;
-
-  @elseif(session('param')=="high_low")
-    value_sensor_s = value_sensor_high_low_s;
-    value_sensor_ax =value_sensor_high_low_ax;
-    value_sensor_ay = value_sensor_high_low_ay;
-
-  @elseif(session('param')=="high_mid")
-    value_sensor_s = value_sensor_high_mid_s;
-    value_sensor_ax =value_sensor_high_mid_ax;
-    value_sensor_ay = value_sensor_high_mid_ay;
-
-  @elseif(session('param')=="high_high")
-    value_sensor_s = value_sensor_high_high_s;
-    value_sensor_ax =value_sensor_high_high_ax;
-    value_sensor_ay = value_sensor_high_high_ay;
-  @endif
-
-  // console.log("cuk",value_sensor_s);
-  var con = document.getElementById('condition');
-  var condition = new Chart(con, {
-      type: 'line',
-      data: {
-          labels:<?= json_encode($time_array)?>,
-          datasets: [{
-              label: 'Data ranges',
-              data: value_sensor_s,
-              backgroundColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  'rgba(255, 99, 132, 0.2)',
-                  // 'rgba(54, 162, 235, 0.2)',
-                  // 'rgba(255, 206, 86, 0.2)',
-                  // 'rgba(75, 192, 192, 0.2)',
-                  // 'rgba(153, 102, 255, 0.2)',
-                  // 'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  'rgba(255, 99, 132, 1)',
-                  // 'rgba(54, 162, 235, 1)',
-                  // 'rgba(255, 206, 86, 1)',
-                  // 'rgba(75, 192, 192, 1)',
-                  // 'rgba(153, 102, 255, 1)',
-                  // 'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
+    // var data_partial =[[[109.95656,-7.382794],[109.95656,-7.382400]],[[109.95656,-7.382200],[109.956569,-7.382000]]];
+    
+    //rendah
+    for (let i in array_low_low){
+      // console.log(data_partial[i]);
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#abffab', // green  
+            'description':
+                '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan rendah </p>'
+          
           },
-          {
-              label: 'gyro x ranges',
-              data: value_sensor_ax,
-              backgroundColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  // 'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  // 'rgba(255, 206, 86, 0.2)',
-                  // 'rgba(75, 192, 192, 0.2)',
-                  // 'rgba(153, 102, 255, 0.2)',
-                  // 'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  // 'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  // 'rgba(255, 206, 86, 1)',
-                  // 'rgba(75, 192, 192, 1)',
-                  // 'rgba(153, 102, 255, 1)',
-                  // 'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          },
-          {
-              label: 'gyro y ranges',
-              data: value_sensor_ay,
-              backgroundColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  // 'rgba(255, 99, 132, 0.2)',
-                  // 'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  // 'rgba(75, 192, 192, 0.2)',
-                  // 'rgba(153, 102, 255, 0.2)',
-                  // 'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  // 'rgba(138,43,226 ,0.2 )',
-                  // 'rgba(255, 99, 132, 1)',
-                  // 'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  // 'rgba(75, 192, 192, 1)',
-                  // 'rgba(153, 102, 255, 1)',
-                  // 'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_low_low[i],
+            // data_1,
           }
-      }
+        });
+    }
+    for (let i in array_low_mid){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#fff38f', // yellow
+            'description':
+            '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan sedang </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_low_mid[i],
+            // data_1,
+          }
+        });
+    }
+  
+    for (let i in array_low_high){
+      // console.log("log " ,array_low_high);
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#ff9696', // red
+            'description':
+            '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan tinggi </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_low_high[i],
+            // data_1,
+          }
+        });
+    }
+
+    //sedang
+    for (let i in array_mid_low){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#00ff00', // green  
+            'description':
+            '<strong>Data Description</strong><p>Data getaran sedang dan kecepatan rendah </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_mid_low[i],
+            // data_1,
+          }
+        });
+    }
+    for (let i in array_mid_mid){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#ffe512', // yellow
+            'description':
+            '<strong>Data Description</strong><p>Data getarang rendah dan kecepatan sedang </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_mid_mid[i],
+            // data_1,
+          }
+        });
+    }
+  
+    for (let i in array_mid_high){
+      // console.log("log " ,array_mid_high);
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#ff1212', // red
+            'description':
+            '<strong>Data Description</strong><p>Data getaran sedang dan kecepatan tinggi </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_mid_high[i],
+            // data_1,
+          }
+        });
+    }
+
+    //tinggi
+    for (let i in array_high_low){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#20d020', // green  
+            'description':
+            '<strong>Data Description</strong><p>Data getaran tinggi dan kecepatan rendah </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_high_low[i],
+            // data_1,
+          }
+        });
+    }
+    for (let i in array_high_mid){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#bfab02', // yellow
+            'description':
+            '<strong>Data Description</strong><p>Data getaran tinggi dan kecepatan sedang </p>'
+          
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_high_mid[i],
+            // data_1,
+          }
+        });
+    }
+  
+    for (let i in array_high_high){
+      data_nav.push(
+        {
+          'type': 'Feature',
+          'properties': {
+            'color': '#bd0303', // red
+            'description':
+            '<strong>Data Description</strong><p>Data tinggi rendah dan kecepatan tinggi </p>'
+
+          },
+          'geometry': {
+            'type': 'LineString',
+            'coordinates': array_high_high[i],
+            // data_1,
+          }
+        });
+    }
+    
+
+    var features = data_nav;
+    
+    map.on('load', function () {
+      map.addSource('lines', {
+        'type': 'geojson',
+        'data': {
+        'type': 'FeatureCollection',
+        'features': features
+        }
+      });
+      map.addLayer({
+        'id': 'lines',
+        'type': 'line',
+        'source': 'lines',
+        'paint': {
+        'line-width': 8,
+        // Use a get expression (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-get)
+        // to set the line-color to a feature property value.
+        'line-color': ['get', 'color']
+        }
+      });
+
+    // Create a popup, but don't add it to the map yet.
+var popup = new mapboxgl.Popup({
+closeButton: false,
+closeOnClick: false
+});
+ 
+  map.on('mouseenter', 'lines', function (e) {
+    // Change the cursor style as a UI indicator.
+    map.getCanvas().style.cursor = 'pointer';
+    var coordinates = e.features[0].geometry.coordinates.slice();
+    console.log(coordinates[0])
+    var description = e.features[[0]].properties.description;
+    
+    // Ensure that if the map is zoomed out such that multiple
+    // copies of the feature are visible, the popup appears
+    // over the copy being pointed to.
+    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    // }
+    
+    // // Populate the popup and set its coordinates
+    // // based on the feature found.
+    popup.setLngLat(coordinates[0]).setHTML(description).addTo(map);
+    });
+  
+  map.on('mouseleave', 'lines', function () {
+  map.getCanvas().style.cursor = '';
+  popup.remove();
   });
+});
+
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if(width < 760){
+      document.getElementById('condition').setAttribute("width", "100"); 
+      document.getElementById('condition').setAttribute("height", "70"); 
+    }
+
+    //algoritma
+    @if(session('param')=="low_low")
+      value_sensor_s = value_sensor_low_low_s;
+      value_sensor_ax =value_sensor_low_low_ax;
+      value_sensor_ay = value_sensor_low_low_ay;
+
+    @elseif(session('param')=="low_mid")
+      value_sensor_s = value_sensor_low_mid_s;
+      value_sensor_ax =value_sensor_low_mid_ax;
+      value_sensor_ay = value_sensor_low_mid_ay;
+
+    @elseif(session('param')=="low_high")
+      value_sensor_s = value_sensor_low_high_s;
+      value_sensor_ax =value_sensor_low_high_ax;
+      value_sensor_ay = value_sensor_low_high_ay;
+
+    @elseif(session('param')=="mid_low")
+      value_sensor_s = value_sensor_mid_low_s;
+      value_sensor_ax =value_sensor_mid_low_ax;
+      value_sensor_ay = value_sensor_mid_low_ay;
+
+    @elseif(session('param')=="mid_mid")
+      value_sensor_s = value_sensor_mid_mid_s;
+      value_sensor_ax =value_sensor_mid_mid_ax;
+      value_sensor_ay = value_sensor_mid_mid_ay;
+
+    @elseif(session('param')=="mid_high")
+      value_sensor_s = value_sensor_mid_high_s;
+      value_sensor_ax =value_sensor_mid_high_ax;
+      value_sensor_ay = value_sensor_mid_high_ay;
+
+    @elseif(session('param')=="high_low")
+      value_sensor_s = value_sensor_high_low_s;
+      value_sensor_ax =value_sensor_high_low_ax;
+      value_sensor_ay = value_sensor_high_low_ay;
+
+    @elseif(session('param')=="high_mid")
+      value_sensor_s = value_sensor_high_mid_s;
+      value_sensor_ax =value_sensor_high_mid_ax;
+      value_sensor_ay = value_sensor_high_mid_ay;
+
+    @elseif(session('param')=="high_high")
+      value_sensor_s = value_sensor_high_high_s;
+      value_sensor_ax =value_sensor_high_high_ax;
+      value_sensor_ay = value_sensor_high_high_ay;
+    @endif
+
+    // console.log("cuk",value_sensor_s);
+    var con = document.getElementById('condition');
+    var condition = new Chart(con, {
+        type: 'line',
+        data: {
+            labels:<?= json_encode($time_array)?>,
+            datasets: [{
+                label: 'Data ranges',
+                data: value_sensor_s,
+                backgroundColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    'rgba(255, 99, 132, 0.2)',
+                    // 'rgba(54, 162, 235, 0.2)',
+                    // 'rgba(255, 206, 86, 0.2)',
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(153, 102, 255, 0.2)',
+                    // 'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    'rgba(255, 99, 132, 1)',
+                    // 'rgba(54, 162, 235, 1)',
+                    // 'rgba(255, 206, 86, 1)',
+                    // 'rgba(75, 192, 192, 1)',
+                    // 'rgba(153, 102, 255, 1)',
+                    // 'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'gyro x ranges',
+                data: value_sensor_ax,
+                backgroundColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    // 'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    // 'rgba(255, 206, 86, 0.2)',
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(153, 102, 255, 0.2)',
+                    // 'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    // 'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    // 'rgba(255, 206, 86, 1)',
+                    // 'rgba(75, 192, 192, 1)',
+                    // 'rgba(153, 102, 255, 1)',
+                    // 'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            },
+            {
+                label: 'gyro y ranges',
+                data: value_sensor_ay,
+                backgroundColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    // 'rgba(255, 99, 132, 0.2)',
+                    // 'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    // 'rgba(75, 192, 192, 0.2)',
+                    // 'rgba(153, 102, 255, 0.2)',
+                    // 'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    // 'rgba(138,43,226 ,0.2 )',
+                    // 'rgba(255, 99, 132, 1)',
+                    // 'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    // 'rgba(75, 192, 192, 1)',
+                    // 'rgba(153, 102, 255, 1)',
+                    // 'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
   </script>
 @endsection

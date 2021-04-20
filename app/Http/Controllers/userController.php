@@ -58,6 +58,7 @@ class userController extends Controller
       $user = User::where('name',$username)->first();
       $data = Data::where([['id_user',"=",$user->id]])->get();
       
+      $length_cycle = 0;
       $car_array =[];
       $active = 0;
       foreach($data as $data_sort){
@@ -65,8 +66,13 @@ class userController extends Controller
         $day = date("d-m-Y",  $times+7*60*60);
         
         $this_day = date("d-m-Y", strtotime(date("d-m-Y")));
-        if($day == $this_day)
+
+        if($day == $this_day){
           $active +=1;
+          // length cycle
+          if($data_sort->cycle > $length_cycle)
+            $length_cycle = $data_sort->cycle;
+        }
 
         // get all car
         if(!in_array($data_sort->id_car,$car_array)){
@@ -75,12 +81,14 @@ class userController extends Controller
         }
       }
 
+  
       // dd(count($car_array));
 
       return view('user.index',[
         'user'=>$user,
         'amount' =>count($car_array),
         'active' =>$active,
+        'length_cycle' => $length_cycle,
       ]);
     }
 

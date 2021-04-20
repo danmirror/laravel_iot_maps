@@ -4,10 +4,10 @@
 
 <head>
 
+  <meta name="author" content="Danu andrean">
+  <meta name="description" content="maps rest api">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
 
   <title> @yield('title') </title>
 
@@ -26,8 +26,6 @@
 
   <!-- chart -->
    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <!-- Custom styles for this template -->
-
 
   <!-- datepicker -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous"></script>
