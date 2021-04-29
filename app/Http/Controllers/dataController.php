@@ -254,6 +254,7 @@ class dataController extends Controller
       // dd($setting);
       $username = Session('name');
       $user = User::where('name',$username)->first();
+      $user_s = Data::where('name',$username)->first();
       $data = Data::where([['id_user',"=",$user->id],
                           ['id_car',"=",$setting]])->get();
       $parameter = Parameter::where('id_user',$user->id)->first();
@@ -278,7 +279,7 @@ class dataController extends Controller
       return view('maps.index',
       [
         'user'=>$user,
-        'data'=>$data,
+        'data'=>$user_s,
         'data_setting'=>$data_setting,
         'parameter' => $parameter,
         'length_cycle'=>$length_cycle,
