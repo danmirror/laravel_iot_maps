@@ -308,11 +308,11 @@ class dataController extends Controller
       $userid = User::where('id',$request->id_user)->first();
       // $data = $request;
       if(!$userid){
-        return response()->json([
-          'id' => $request->id_user,
-          'description' => $request,
-          'user id' =>$request->id_user,
-        ]);
+        // return response()->json([
+        //   'id' => $request->id_user,
+        //   'description' => $request,
+        //   'user id' =>$request->id_user,
+        // ]);
       }
       // dd();
       else{
@@ -332,10 +332,10 @@ class dataController extends Controller
           $data->temp = $request->temp;
           $data->cycle = $request->cycle;
           $data->save();
-          return response()->json([
-            'id' => $request->id_user,
-            'description' => 'success',
-          ],200);
+          // return response()->json([
+          //   'id' => $request->id_user,
+          //   'description' => 'success',
+          // ],200);
       }
     }
 
