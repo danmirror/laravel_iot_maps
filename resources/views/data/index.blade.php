@@ -42,8 +42,6 @@
 
       <div class="container content">
         <h3 class="mt-2 title">Data Distribution</h3>
-        <p>{{$user}}</p>
-        <p>{{$data}}</p>
         
         <div class="container-content shadow">
           <div class="row row justify-content-between">
@@ -58,7 +56,6 @@
                   </div>
                   <select name="setting" class="custom-select setting" id="select">
                     <option selected disabled hidden>{{session('setting')}}</option>
-                    
                     <?php $car_array = [];?>
 
                     @foreach($data_setting as $data_car)
