@@ -331,10 +331,6 @@ class dataController extends Controller
           $data->temp = $request->temp;
           $data->cycle = $request->cycle;
           $data->save();
-          return response()->json([
-            'id' => $request->id_user,
-            'description' => 'success',
-          ],200);
       }
     }
 
