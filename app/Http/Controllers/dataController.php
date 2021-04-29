@@ -310,6 +310,8 @@ class dataController extends Controller
         return response()->json([
           'id' => $request->id_user,
           'description' => $request,
+          'user id' =>$request->id_user,
+          'id database user' => $userid->$user_id,
         ]);
       }
       // dd();
