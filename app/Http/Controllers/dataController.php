@@ -304,7 +304,7 @@ class dataController extends Controller
     public function store(Request $request)
     {
 
-      $userid = User::where('id',$request->id_user)->first();
+      $userid = User::where('name',$request->id_user)->first();
       // $data = $request;
       if(!$userid){
         return response()->json([
