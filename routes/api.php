@@ -19,4 +19,5 @@ use App\Http\Controllers\dataController;
 // });
 Route::group(['prefix'=>'v1'],function(){
   Route::get('data', [dataController::class, 'store']);
+  Route::post('data', [dataController::class, 'store']);
 });

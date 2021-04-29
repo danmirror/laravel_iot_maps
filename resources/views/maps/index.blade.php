@@ -854,36 +854,36 @@
         }
       });
 
-    // Create a popup, but don't add it to the map yet.
-var popup = new mapboxgl.Popup({
-closeButton: false,
-closeOnClick: false
-});
- 
-  map.on('mouseenter', 'lines', function (e) {
-    // Change the cursor style as a UI indicator.
-    map.getCanvas().style.cursor = 'pointer';
-    var coordinates = e.features[0].geometry.coordinates.slice();
-    console.log(coordinates[0])
-    var description = e.features[[0]].properties.description;
-    
-    // Ensure that if the map is zoomed out such that multiple
-    // copies of the feature are visible, the popup appears
-    // over the copy being pointed to.
-    // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    // }
-    
-    // // Populate the popup and set its coordinates
-    // // based on the feature found.
-    popup.setLngLat(coordinates[0]).setHTML(description).addTo(map);
+          // Create a popup, but don't add it to the map yet.
+      var popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+      });
+      
+      map.on('mouseenter', 'lines', function (e) {
+        // Change the cursor style as a UI indicator.
+        map.getCanvas().style.cursor = 'pointer';
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        console.log(coordinates[0])
+        var description = e.features[[0]].properties.description;
+        
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        // while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        // coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        // }
+        
+        // // Populate the popup and set its coordinates
+        // // based on the feature found.
+        popup.setLngLat(coordinates[0]).setHTML(description).addTo(map);
+      });
+      
+      map.on('mouseleave', 'lines', function () {
+        map.getCanvas().style.cursor = '';
+        popup.remove();
+      });
     });
-  
-  map.on('mouseleave', 'lines', function () {
-  map.getCanvas().style.cursor = '';
-  popup.remove();
-  });
-});
 
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if(width < 760){

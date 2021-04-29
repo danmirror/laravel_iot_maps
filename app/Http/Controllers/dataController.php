@@ -305,17 +305,18 @@ class dataController extends Controller
     {
 
       $userid = User::where('id',$request->id_user)->first();
-
+      // $data = $request;
       if(!$userid){
-        return response()->json([
-          'id' => $request->id_user,
-          'description' => 'Tidak terdaftar',
-        ]);
+        // return response()->json([
+      //     'id' => $request->id_user,
+      //     'description' => $request,
+        // ]);
       }
+      // dd();
       else{
           $data =  new Data();
-          // dd($userid->id);
-          $data->id_user = $userid->id;
+          // // // dd($userid->id);
+          $data->id_user = $request->id_user;
           $data->id_car = $request->id_car;
           $data->btn_empty = $request->btn_empty;
           $data->btn_filled = $request->btn_filled;
@@ -329,10 +330,10 @@ class dataController extends Controller
           $data->temp = $request->temp;
           $data->cycle = $request->cycle;
           $data->save();
-          return response()->json([
-            'id' => $request->id_user,
-            'description' => 'success',
-          ]);
+          // return response()->json([
+          //   'id' => $request->id_user,
+          //   'description' => 'success',
+          // ],200);
       }
     }
 
