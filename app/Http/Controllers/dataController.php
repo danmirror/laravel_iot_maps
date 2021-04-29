@@ -128,7 +128,10 @@ class data_algo{
         $temp_array_val += (int)$temp_array;
         
       }
-      self::$container []=$temp_array_val/count(${"temp_array" . $iter_range});
+      if($temp_array_val)
+        self::$container []=$temp_array_val/count(${"temp_array" . $iter_range});
+      else
+        self::$container []=0;
       $temp_array_val=0;
     }
   }
@@ -254,7 +257,6 @@ class dataController extends Controller
       // dd($setting);
       $username = Session('name');
       $user = User::where('name',$username)->first();
-      $user_s = Data::where('name',$username)->first();
       $data = Data::where([['id_user',"=",$user->id],
                           ['id_car',"=",$setting]])->get();
       $parameter = Parameter::where('id_user',$user->id)->first();
@@ -279,7 +281,7 @@ class dataController extends Controller
       return view('maps.index',
       [
         'user'=>$user,
-        'data'=>$user_s,
+        'data'=>$data,
         'data_setting'=>$data_setting,
         'parameter' => $parameter,
         'length_cycle'=>$length_cycle,
