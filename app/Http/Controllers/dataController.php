@@ -120,7 +120,6 @@ class data_algo{
         }
       }
     }
-    
 
     $temp_array_val = 0;
     for($iter_range =1; $iter_range <=self::$state_cycle; $iter_range ++){
