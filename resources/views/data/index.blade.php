@@ -56,6 +56,7 @@
                   </div>
                   <select name="setting" class="custom-select setting" id="select">
                     <option selected disabled hidden>{{session('setting')}}</option>
+                    <p>{{$data_setting}}</p>
                     <?php $car_array = [];?>
 
                     @foreach($data_setting as $data_car)
