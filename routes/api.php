@@ -18,6 +18,6 @@ use App\Http\Controllers\dataController;
 //     return $request->user();
 // });
 Route::group(['prefix'=>'v1'],function(){
-  Route::get('data', [dataController::class, 'store']);
+  // Route::get('data', [dataController::class, 'store']);
   Route::post('data', [dataController::class, 'store']);
 });
