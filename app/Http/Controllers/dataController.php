@@ -311,7 +311,6 @@ class dataController extends Controller
           'id' => $request->id_user,
           'description' => $request,
           'user id' =>$request->id_user,
-          'id database user' => $userid->$id_user,
         ]);
       }
       // dd();
