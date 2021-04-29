@@ -945,7 +945,7 @@
         data: {
             labels:<?= json_encode($time_array)?>,
             datasets: [{
-                label: 'Data ranges',
+                label: 'Speed ranges',
                 data: value_sensor_s,
                 backgroundColor: [
                     // 'rgba(138,43,226 ,0.2 )',
