@@ -170,7 +170,7 @@ class dataController extends Controller
       if($request->date)
         session::put('date',$request->date);
       else //get this day
-        session::put('date',date("d-m-Y", strtotime(date("d-m-Y"))));
+        session::put('date',date("d-m-Y", strtotime(date("d-m-Y H:i"))+7*60*60 ));
 
       // dd($request->date);
    
@@ -251,7 +251,7 @@ class dataController extends Controller
       if($request->date)
         session::put('date',$request->date);
       else
-        session::put('date',date("d-m-Y", strtotime(date("d-m-Y"))));
+        session::put('date',date("d-m-Y", strtotime(date("d-m-Y H:i"))+7*60*60 ));
 
       // dd($setting);
       $username = Session('name');
