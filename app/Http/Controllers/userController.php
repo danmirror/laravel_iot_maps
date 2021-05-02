@@ -65,7 +65,7 @@ class userController extends Controller
         $times = strtotime(date($data_sort->updated_at));
         $day = date("d-m-Y",  $times+7*60*60);
         
-        $this_day = date("d-m-Y", strtotime(date("d-m-Y")));
+        $this_day =date("d-m-Y", strtotime(date("d-m-Y H:i"))+7*60*60 );
 
         if($day == $this_day){
           $active +=1;
