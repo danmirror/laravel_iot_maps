@@ -799,7 +799,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#abffab', // green  
+            'color': '#ff9696', // red
             'description':
                 '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan rendah </p>'
           
@@ -835,7 +835,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#ff9696', // red
+            'color':  '#abffab', // green  
             'description':
             '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan tinggi </p>'
           
@@ -854,7 +854,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#00ff00', // green  
+            'color':'#ff1212', // red 
             'description':
             '<strong>Data Description</strong><p>Data getaran sedang dan kecepatan rendah </p>'
           
@@ -890,7 +890,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#ff1212', // red
+            'color':  '#00ff00', // green  
             'description':
             '<strong>Data Description</strong><p>Data getaran sedang dan kecepatan tinggi </p>'
           
@@ -909,7 +909,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#20d020', // green  
+            'color':'#bd0303', // red
             'description':
             '<strong>Data Description</strong><p>Data getaran tinggi dan kecepatan rendah </p>'
           
@@ -944,7 +944,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#bd0303', // red
+            'color':  '#20d020', // green  
             'description':
             '<strong>Data Description</strong><p>Data tinggi rendah dan kecepatan tinggi </p>'
 

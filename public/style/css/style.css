@@ -294,15 +294,15 @@ html, body {
 }
 
 *:nth-child(1) > .legend {
-  background-color: #20d020;
+  background-color: #bd0303;
 }
 
 *:nth-child(2) > .legend {
-  background-color: #00ff00;
+  background-color: #ff1212;
 }
 
 *:nth-child(3) > .legend {
-  background-color: #abffab;
+  background-color: #ff9696;
 }
 
 *:nth-child(4) > .legend {
@@ -318,15 +318,15 @@ html, body {
 }
 
 *:nth-child(7) > .legend {
-  background-color: #bd0303;
+  background-color: #20d020;
 }
 
 *:nth-child(8) > .legend {
-  background-color: #ff1212;
+  background-color: #00ff00;
 }
 
 *:nth-child(9) > .legend {
-  background-color: #ff9696;
+  background-color: #abffab;
 }
 
 .quakeInfo {
