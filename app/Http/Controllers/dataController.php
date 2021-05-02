@@ -147,7 +147,7 @@ class dataController extends Controller
 
     public function data(Request $request)
     {
-      
+      ini_set('memory_limit', '-1');
       
       if(!Session::get('login')){
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
@@ -211,6 +211,7 @@ class dataController extends Controller
 
     public function index(Request $request)
     {
+      ini_set('memory_limit', '-1');
       // dd($request->param);
       if(!Session::get('login')){
         return redirect('/user/login')->with('alert','Kamu harus login dulu');
