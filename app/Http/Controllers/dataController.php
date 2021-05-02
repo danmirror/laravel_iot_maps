@@ -183,10 +183,19 @@ class dataController extends Controller
       $parameter = Parameter::where('id_user',$user->id)->first();
       $data_setting = Data::where('id_user',$user->id)->get();
      
-      // foreach( $data  as $data_sort){
-        // $times = strtotime(date($data_sort->updated_at));
-        // dd(date("d",  $times+7*60*60));
-      // }
+      $data_cycle = [];
+      $data_long = [];
+      $data_lat = [];
+      $data_x = [];
+      $data_y = [];
+      foreach( $data  as $data_sort){
+        $data_cycle []=$data_sort->cycle;
+        $data_long []=$data_sort->longitude;
+        $data_lat []=$data_sort->latitude;
+        $data_x []=$data_sort->xgyro;
+        $data_y []=$data_sort->ygyro;
+      }
+      dd($data_cycle,$data_long,$data_lat,$data_x,$data_y);
       data_algo::speed_range($data);
 
       data_algo::data_algo($data,$parameter);
