@@ -93,7 +93,7 @@ class data_algo{
         $times = strtotime(date($data_all->updated_at));
         $times_day = date("d-m-Y",  $times+7*60*60);
         // dd(session::get('date'));
-        if ($data_all->cycle == '<'){
+        if (!(int)$data_all->cycle){
           // dd($data_all->cycle);
         }else{
 
@@ -188,6 +188,8 @@ class dataController extends Controller
       $parameter = Parameter::where('id_user',$user->id)->first();
       $data_setting = Data::where('id_user',$user->id)->get();
      
+
+      // ==========================cheker============
       $data_cycle = [];
       $data_long = [];
       $data_lat = [];
@@ -202,6 +204,9 @@ class dataController extends Controller
         $data_y []=$data_sort->ygyro;
       }
       // dd($data_cycle,$data_long,$data_lat,$data_x,$data_y);
+      // ==========================================================
+
+
       data_algo::speed_range($data);
 
       data_algo::data_algo($data,$parameter);
@@ -284,10 +289,15 @@ class dataController extends Controller
         $day = date("d-m-Y",  $times+7*60*60);
         
         // get length
-        if($day == Session::get('date')){
-          if($data_sort->cycle > $length_cycle){
-            $length_cycle = $data_sort->cycle;
+        if ((int)$data_sort->cycle){
+          if($day == Session::get('date')){
+            if($data_sort->cycle > $length_cycle){
+              $length_cycle = $data_sort->cycle;
+            }
           }
+        }
+        else{
+          // dd($data_sort->cycle);
         }
       }
       // dd($length_cycle);
