@@ -93,9 +93,14 @@ class data_algo{
         $times = strtotime(date($data_all->updated_at));
         $times_day = date("d-m-Y",  $times+7*60*60);
         // dd(session::get('date'));
-        if(session::get('date') == $times_day){
-          if($data_all->cycle >=  self::$state_cycle){
-            self::$state_cycle = $data_all->cycle;
+        if ($data_all->cycle == '<'){
+          dd($data_all->cycle);
+        }else{
+
+          if(session::get('date') == $times_day){
+            if($data_all->cycle >=  self::$state_cycle){
+              self::$state_cycle = $data_all->cycle;
+            }
           }
         }
       }
@@ -189,13 +194,14 @@ class dataController extends Controller
       $data_x = [];
       $data_y = [];
       foreach( $data  as $data_sort){
+
         $data_cycle []=$data_sort->cycle;
         $data_long []=$data_sort->longitude;
         $data_lat []=$data_sort->latitude;
         $data_x []=$data_sort->xgyro;
         $data_y []=$data_sort->ygyro;
       }
-      dd($data_cycle,$data_long,$data_lat,$data_x,$data_y);
+      // dd($data_cycle,$data_long,$data_lat,$data_x,$data_y);
       data_algo::speed_range($data);
 
       data_algo::data_algo($data,$parameter);
