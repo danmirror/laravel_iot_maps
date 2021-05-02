@@ -127,6 +127,7 @@
 // console.log({{json_encode($approach)}});
   var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
   if(width < 760){
+    document.getElementById('myChart').setAttribute("width", "100"); 
     document.getElementById('range').setAttribute("width", "100"); 
     document.getElementById('range').setAttribute("height", "70"); 
   }

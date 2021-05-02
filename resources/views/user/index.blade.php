@@ -66,7 +66,7 @@
                   </div>
                 </div>
               </div>
-              <div class="col-lg-3 col-md">
+              <div class="col-lg-3 col-md mb-2">
                 <div class="card hover-blue-violet">
                   <div class="card-body">
                     <h6 class="card-title">Vehicle Amount</h6>

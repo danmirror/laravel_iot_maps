@@ -127,7 +127,7 @@
           </div>
 
 
-          <div class="row">
+          <div class="row style-legend justify-content-around ">
             <div class="col-6 col-lg-4">
               <div class="legend"></div>
               speed L shock H
@@ -171,7 +171,7 @@
         </div>
         <div class="container-content shadow mt-5">
           <div class="row justify-content-between ">
-            <div class="col-6 mb-4">
+            <div class="ml-2 col-6 mb-4">
               <h4 class="font mb-1">Status Sensor</h4 >
             </div>
             <div class="col-lg-5 col-md">
@@ -190,6 +190,9 @@
                       <option value="mid_low">mid_low</option>
                       <option value="mid_mid">mid_mid</option>
                       <option value="mid_high">mid_high</option>
+                      <option value="high_low">high_low</option>
+                      <option value="high_mid">high_mid</option>
+                      <option value="high_high">high_high</option>
                   
                   </select>
                   <div class="input-group-append">

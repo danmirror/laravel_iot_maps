@@ -4,10 +4,10 @@
 // }
 
 .container{
-   padding: 10px 2em;
+   padding: 10px 1.5em;
 }
 .container-content{
-  padding: 20px 2em;
+  padding: 20px 1.5em;
   border:#111;
 }
 .title{
@@ -20,6 +20,15 @@ hr{
 
 
 @media (max-width: 768px) {
+  label{
+    font-size: 13px;
+  }
+  small{
+    font-size: 9px!important;
+  }
+  .style-legend{
+    font-size: 13px!important;
+  }
   .chart{
     width: 350px;
     height: 20rem;
@@ -29,7 +38,7 @@ hr{
     padding: 10px 0em !important;
   }
   .container-content{
-    padding: 20px 2em;
+    padding: 20px 1em;
     border:#111;
   }
    
