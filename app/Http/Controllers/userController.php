@@ -70,8 +70,10 @@ class userController extends Controller
         if($day == $this_day){
           $active +=1;
           // length cycle
-          if($data_sort->cycle > $length_cycle)
-            $length_cycle = $data_sort->cycle;
+          if ((int)$data_sort->cycle){
+            if($data_sort->cycle > $length_cycle)
+              $length_cycle = $data_sort->cycle;
+          }
         }
 
         // get all car
