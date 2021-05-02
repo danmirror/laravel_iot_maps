@@ -799,7 +799,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color': '#ff9696', // red
+            'color': '#ffa9a9', // red
             'description':
                 '<strong>Data Description</strong><p>Data getaran rendah dan kecepatan rendah </p>'
           
@@ -854,7 +854,7 @@
         {
           'type': 'Feature',
           'properties': {
-            'color':'#ff1212', // red 
+            'color':'#ff3c3c', // red 
             'description':
             '<strong>Data Description</strong><p>Data getaran sedang dan kecepatan rendah </p>'
           
