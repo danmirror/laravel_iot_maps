@@ -873,7 +873,7 @@
           'properties': {
             'color': '#ffe512', // yellow
             'description':
-            '<strong>Data Description</strong><p>Data getarang rendah dan kecepatan sedang </p>'
+            '<strong>Data Description</strong><p>Data getarang sedang dan kecepatan sedang </p>'
           
           },
           'geometry': {
