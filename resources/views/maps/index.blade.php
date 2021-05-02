@@ -215,6 +215,20 @@
   <script>
     document.getElementById("{{session('setting')}}").selected = "true"
   
+    let container_prev = [];
+    let prev_low_low=0;
+    let prev_low_mid = 0;
+    let prev_low_high = 0;
+
+    let prev_mid_low=0;
+    let prev_mid_mid = 0;
+    let prev_mid_high = 0;
+
+    let prev_high_low=0;
+    let prev_high_mid = 0;
+    let prev_high_high = 0;
+
+
     let data_trig_1=[];
     let data_1=[];
     let data_trig_2=[];
@@ -323,6 +337,7 @@
           //reset
           data_trig_1 = [];
           console.log("count")
+
           //goncangan rendah
           @if($data_all->xgyro > $parameter->xmina && $data_all->xgyro < $parameter->xmaxa ||
             $data_all->ygyro > $parameter->ymina && $data_all->ygyro < $parameter->ymaxa )
@@ -330,6 +345,14 @@
               @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
                 // stack value
                 console.log("low-low");
+
+                //prev
+                if (container_prev.length !==0 && prev_low_low==0 ) {
+                  data_low_low.push(container_prev)
+                  prev_low_low = 1;
+                }
+
+                //real
                 low_low.push(<?= $data_all->longitude; ?>);
                 low_low.push(<?= $data_all->latitude; ?>);
                 data_low_low.push(low_low);
@@ -341,6 +364,10 @@
                 value_sensor_low_low_ay.push(<?= $data_all->ygyro; ?>);
                             
               @else
+
+                //prev reset
+                prev_low_low = 0;
+
                 // add data sensor zero for same all data in grafik
                 value_sensor_low_low_s.push(0);
                 value_sensor_low_low_ax.push(0);
@@ -353,6 +380,13 @@
 
               @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
                 console.log("low-mid");
+                //prev
+                if (container_prev.length !==0 && prev_low_mid==0 ) {
+                  data_low_mid.push(container_prev)
+                  prev_low_mid = 1;
+                }
+
+                //real
                 low_mid.push(<?= $data_all->longitude; ?>);
                 low_mid.push(<?= $data_all->latitude; ?>);
                 data_low_mid.push(low_mid);
@@ -364,6 +398,8 @@
                 value_sensor_low_mid_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                //prev reset
+                prev_low_mid = 0;
                 // add data sensor
                 value_sensor_low_mid_s.push(0);
                 value_sensor_low_mid_ax.push(0);
@@ -376,6 +412,15 @@
 
               @if($data_all->speed >= $parameter->speedc)
                 console.log("low-high");
+
+                // /prev
+                if (container_prev.length !==0 && prev_low_high==0 ) {
+                  data_low_high.push(container_prev)
+                  prev_low_high = 1;
+                }
+
+                //real
+
                 low_high.push(<?= $data_all->longitude; ?>);
                 low_high.push(<?= $data_all->latitude; ?>);
                 data_low_high.push(low_high);
@@ -387,6 +432,8 @@
                 value_sensor_low_high_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                //prev reset
+                prev_low_high = 0;
                 // add data sensor
                 value_sensor_low_high_s.push(0);
                 value_sensor_low_high_ax.push(0);
@@ -398,6 +445,12 @@
               @endif
 
           @else
+
+            //prev reset
+            prev_low_low = 0;
+            prev_low_mid = 0;
+            prev_low_high = 0;
+            
             value_sensor_low_low_s.push(0);
             value_sensor_low_low_ax.push(0);
             value_sensor_low_low_ay.push(0);
@@ -431,6 +484,13 @@
               
               @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
                 console.log("mid-low");
+                 //prev
+                 if (container_prev.length !==0 && prev_mid_low==0 ) {
+                  data_mid_low.push(container_prev)
+                  prev_mid_low = 1;
+                }
+
+                //real
                 mid_low.push(<?= $data_all->longitude; ?>);
                 mid_low.push(<?= $data_all->latitude; ?>);
                 data_mid_low.push(mid_low);
@@ -442,6 +502,8 @@
                 value_sensor_mid_low_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_mid_low = 0;
                 // add data sensor
                 value_sensor_mid_low_s.push(0);
                 value_sensor_mid_low_ax.push(0);
@@ -454,6 +516,13 @@
 
               @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
                 console.log("mid-mid");
+                 //prev
+                 if (container_prev.length !==0 && prev_mid_mid==0 ) {
+                  data_mid_mid.push(container_prev)
+                  prev_mid_mid = 1;
+                }
+
+                //real
                 mid_mid.push(<?= $data_all->longitude; ?>);
                 mid_mid.push(<?= $data_all->latitude; ?>);
                 data_mid_mid.push(mid_mid);
@@ -465,6 +534,8 @@
                 value_sensor_mid_mid_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_mid_mid = 0;
                 // add data sensor
                 value_sensor_mid_mid_s.push(0);
                 value_sensor_mid_mid_ax.push(0);
@@ -477,6 +548,13 @@
 
               @if($data_all->speed >= $parameter->speedc)
                 console.log("mid-high");
+                //prev
+                if (container_prev.length !==0 && prev_mid_high==0 ) {
+                  data_mid_high.push(container_prev)
+                  prev_mid_high = 1;
+                }
+
+                //real
                 mid_high.push(<?= $data_all->longitude; ?>);
                 mid_high.push(<?= $data_all->latitude; ?>);
                 data_mid_high.push(mid_high);
@@ -488,6 +566,8 @@
                 value_sensor_mid_high_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_mid_high = 0;
                 // add data sensor
                 value_sensor_mid_high_s.push(0);
                 value_sensor_mid_high_ax.push(0);
@@ -498,6 +578,11 @@
                 data_mid_high = [];
               @endif
           @else
+            //prev reset
+            prev_mid_low = 0;
+            prev_mid_mid = 0;
+            prev_mid_high = 0;
+
             value_sensor_mid_low_s.push(0);
             value_sensor_mid_low_ax.push(0);
             value_sensor_mid_low_ay.push(0);
@@ -531,6 +616,13 @@
             
               @if($data_all->speed >= $parameter->speeda && $data_all->speed < $parameter->speedb)
                 console.log("high-low");
+                //prev
+                if (container_prev.length !==0 && prev_high_low==0 ) {
+                  data_high_low.push(container_prev)
+                  prev_high_low = 1;
+                }
+
+                //real
                 high_low.push(<?= $data_all->longitude; ?>);
                 high_low.push(<?= $data_all->latitude; ?>);
                 data_high_low.push(high_low);
@@ -542,6 +634,8 @@
                 value_sensor_high_low_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_high_low = 0;
                 // add data sensor
                 value_sensor_high_low_s.push(0);
                 value_sensor_high_low_ax.push(0);
@@ -554,6 +648,13 @@
 
               @if($data_all->speed >= $parameter->speedb && $data_all->speed < $parameter->speedc)
                 console.log("high-mid");
+                //prev
+                if (container_prev.length !==0 && prev_high_mid==0 ) {
+                  data_high_mid.push(container_prev)
+                  prev_high_mid = 1;
+                }
+
+                //real
                 high_mid.push(<?= $data_all->longitude; ?>);
                 high_mid.push(<?= $data_all->latitude; ?>);
                 data_high_mid.push(high_mid);
@@ -565,6 +666,8 @@
                 value_sensor_high_mid_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_high_mid = 0;
                 // add data sensor
                 value_sensor_high_mid_s.push(0);
                 value_sensor_high_mid_ax.push(0);
@@ -577,6 +680,13 @@
 
               @if($data_all->speed >= $parameter->speedc)
                 console.log("high-high");
+                //prev
+                if (container_prev.length !==0 && prev_high_high==0 ) {
+                  data_high_high.push(container_prev)
+                  prev_high_high = 1;
+                }
+
+                //real
                 high_high.push(<?= $data_all->longitude; ?>);
                 high_high.push(<?= $data_all->latitude; ?>);
                 data_high_high.push(high_high);
@@ -588,6 +698,8 @@
                 value_sensor_high_high_ay.push(<?= $data_all->ygyro; ?>);
 
               @else
+                // prev reset
+                prev_high_high = 0;
                 // add data sensor
                 value_sensor_high_high_s.push(0);
                 value_sensor_high_high_ax.push(0);
@@ -599,6 +711,11 @@
               @endif
 
           @else
+            //prev reset
+            prev_high_low = 0;
+            prev_high_mid = 0;
+            prev_high_high = 0;
+
             value_sensor_high_low_s.push(0);
             value_sensor_high_low_ax.push(0);
             value_sensor_high_low_ay.push(0);
@@ -625,6 +742,11 @@
               data_high_high =[];
             }
           @endif
+
+          // container_prev
+          container_prev =[];
+          container_prev.push(<?= $data_all->longitude; ?>);
+          container_prev.push(<?= $data_all->latitude; ?>);
 
         @endif
       @endif
@@ -665,7 +787,8 @@
       });
 
     // var data_partial =[[[109.95656,-7.382794],[109.95656,-7.382400]],[[109.95656,-7.382200],[109.956569,-7.382000]]];
-    
+    console.log(array_low_low);
+    console.log(array_high_low);
     //rendah
     for (let i in array_low_low){
       // console.log(data_partial[i]);
