@@ -94,7 +94,7 @@ class data_algo{
         $times_day = date("d-m-Y",  $times+7*60*60);
         // dd(session::get('date'));
         if ($data_all->cycle == '<'){
-          dd($data_all->cycle);
+          // dd($data_all->cycle);
         }else{
 
           if(session::get('date') == $times_day){
