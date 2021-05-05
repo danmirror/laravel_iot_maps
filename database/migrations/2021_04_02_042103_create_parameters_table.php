@@ -11,38 +11,38 @@ class CreateParametersTable extends Migration
      *
      * @return void
      */
-    // public function up()
-    // {
-    //     Schema::create('parameters', function (Blueprint $table) {
-    //         $table->id();
-    //         $table->string('id_user');
-    //         $table->string('xmina');
-    //         $table->string('xminb');
-    //         $table->string('xminc');
-    //         $table->string('xmaxa');
-    //         $table->string('xmaxb');
-    //         $table->string('xmaxc');
-    //         $table->string('ymina');
-    //         $table->string('yminb');
-    //         $table->string('yminc');
-    //         $table->string('ymaxa');
-    //         $table->string('ymaxb');
-    //         $table->string('ymaxc');
-    //         $table->string('speeda');
-    //         $table->string('speedb');
-    //         $table->string('speedc');
-    //         $table->timestamps();
+    public function up()
+    {
+        Schema::create('parameters', function (Blueprint $table) {
+            $table->id();
+            $table->string('id_user');
+            $table->string('xmina');
+            $table->string('xminb');
+            $table->string('xminc');
+            $table->string('xmaxa');
+            $table->string('xmaxb');
+            $table->string('xmaxc');
+            $table->string('ymina');
+            $table->string('yminb');
+            $table->string('yminc');
+            $table->string('ymaxa');
+            $table->string('ymaxb');
+            $table->string('ymaxc');
+            $table->string('speeda');
+            $table->string('speedb');
+            $table->string('speedc');
+            $table->timestamps();
 
-    //     });
-    // }
+        });
+    }
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    // public function down()
-    // {
-    //     Schema::dropIfExists('parameters');
-    // }
+    public function down()
+    {
+        Schema::dropIfExists('parameters');
+    }
 }
